@@ -8,7 +8,7 @@ const SALT = 10
 
 const _repository = mongoose.model('User', User)
 
-class UserService {
+class UsersService {
   async create(body) {
     //VALIDATE PASSWORD LENGTH
     if (!body.hasOwnProperty("password") || body.password.length < 6) {
@@ -51,5 +51,5 @@ class UserService {
   }
 }
 
-const _userService = new UserService()
-export default _userService
+const _usersService = new UsersService()
+export default _usersService

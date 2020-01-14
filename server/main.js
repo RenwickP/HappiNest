@@ -29,17 +29,15 @@ server.use(bp.urlencoded({
 }))
 
 //REGISTER YOUR SESSION, OTHERWISE YOU WILL NEVER GET LOGGED IN
-import UserController from './controllers/UserController'
 import Session from "./middleware/session"
+
 server.use(new Session().express)
-server.use('/account', new UserController().router)
 
 
 //YOUR ROUTES HERE!!!!!!
-import BoardController from './controllers/BoardController'
+import UsersController from './controllers/UsersController'
 
-server.use('/api/boards', new BoardController().router)
-
+server.use('/account', new UsersController().router)
 
 
 //NOTE Default error handler, catches all routes with an error attached
