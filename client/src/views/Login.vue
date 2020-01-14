@@ -8,11 +8,15 @@
         <div class="body">
           <form @submit.prevent="loginUser">
             <input type="email" v-model="creds.email" placeholder="email" />
-            <input type="password" v-model="creds.password" placeholder="password" />
+            <input
+              type="password"
+              v-model="creds.password"
+              placeholder="password"
+            />
             <button class="btn btn-success" type="submit">Login</button>
           </form>
           <div class="action">
-            <router-link :to="{name: 'register'}">
+            <router-link :to="{ name: 'register' }">
               <p>No account? Click here to Register</p>
             </router-link>
           </div>
