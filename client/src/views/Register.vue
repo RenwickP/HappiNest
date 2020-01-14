@@ -1,19 +1,18 @@
 <template>
-  <div class="login container-fluid">
+  <div class="register container-fluid">
     <div class="row house">
-      <div class="col">
-        <div class="arrow-up"></div>
-      </div>
+      <div class="arrow-up"></div>
       <div class="col">
         <div class="body">
-          <form @submit.prevent="loginUser">
-            <input type="email" v-model="creds.email" placeholder="email" />
-            <input type="password" v-model="creds.password" placeholder="password" />
-            <button class="btn btn-success" type="submit">Login</button>
+          <form @submit.prevent="register">
+            <input type="text" v-model="newUser.name" placeholder="name" />
+            <input type="email" v-model="newUser.email" placeholder="email" />
+            <input type="password" v-model="newUser.password" placeholder="password" />
+            <button class="btn btn-warning" type="submit">Create Account</button>
           </form>
           <div class="action">
-            <router-link :to="{name: 'register'}">
-              <p>No account? Click here to Register</p>
+            <router-link :to="{name: 'login'}">
+              <p>Already have an account? Click here to Login</p>
             </router-link>
           </div>
         </div>
@@ -25,12 +24,13 @@
 <script>
 import router from "@/router/index.js";
 export default {
-  name: "login",
+  name: "register",
   data() {
     return {
-      creds: {
+      newUser: {
         email: "",
-        password: ""
+        password: "",
+        name: ""
       }
     };
   },
@@ -40,8 +40,8 @@ export default {
     }
   },
   methods: {
-    loginUser() {
-      this.$store.dispatch("login", this.creds);
+    register() {
+      this.$store.dispatch("register", this.newUser);
     }
   }
 };
