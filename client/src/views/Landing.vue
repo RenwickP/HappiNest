@@ -5,12 +5,23 @@
         <div class="arrow-up"></div>
       </div>
       <div class="col">
-        <div class="body"></div>
+        <div class="body">
+          <h4 v-if="fakeHouse">{{fakeHouse}}</h4>
+          <div class="fake-rooms" v-for="fakeRoom in fakeRooms" :key="fakeRoom">{{fakeRoom}}</div>
+          <div class="roommate-form">
+            <form v-if="!fakeHouse" @submit.prevent="createHouseName">
+              <input type="text" placeholder="Name Your House" v-model="newHouse" />
+            </form>
+            <form @submit.prevent="createFakeRoom">
+              <input type="text" placeholder="Add A Roommate" v-model="roommateName" />
+            </form>
+          </div>
+        </div>
       </div>
       <div class="col d-flex login">
-        <button class="btn btn-primary">Login</button>
+        <router-link :to="{name: 'login'}" id="login">Login</router-link>
         <h3>|</h3>
-        <button class="btn btn-primary">Register</button>
+        <router-link :to="{name: 'register'}" id="register">Register</router-link>
       </div>
     </div>
   </div>
@@ -22,35 +33,45 @@ export default {
   name: "landing",
   data() {
     return {
-      loginForm: true,
-      creds: {
-        email: "",
-        password: ""
-      },
-      newUser: {
-        email: "",
-        password: "",
-        name: ""
-      }
+      roommateName: "",
+      newHouse: ""
     };
   },
-  beforeCreate() {
-    if (this.$store.state.user._id) {
-      this.$router.push({ name: "boards" });
+  methods: {
+    createFakeRoom() {
+      let room = this.roommateName;
+      this.$store.dispatch("createFakeRoom", room);
+      this.roommateName = "";
+    },
+    createHouseName() {
+      let house = this.newHouse;
+      this.$store.dispatch("createHouseName", house);
+      this.newHouse = "";
     }
   },
-  methods: {
-    register() {
-      this.$store.dispatch("register", this.newUser);
+  computed: {
+    fakeRooms() {
+      return this.$store.state.fakeRooms;
     },
-    loginUser() {
-      this.$store.dispatch("login", this.creds);
+    fakeHouse() {
+      return this.$store.state.fakeHouse;
     }
   }
 };
 </script>
 
-<style>
+<style scoped>
+.roommate-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+h4 {
+  color: white;
+}
+.fake-rooms {
+  color: white;
+}
 .house {
   display: flex;
 }
@@ -69,9 +90,6 @@ export default {
   width: 0;
   margin-top: -1px;
   border: 130px solid rgb(109, 54, 54);
-}
-.action {
-  cursor: pointer;
 }
 .login {
   margin-top: 30px;
