@@ -4,18 +4,20 @@
       <div class="arrow-up"></div>
       <div class="col">
         <div class="body">
-          <form @submit.prevent="register">
-            <input type="text" v-model="newUser.name" placeholder="name" />
-            <input type="email" v-model="newUser.email" placeholder="email" />
-            <input type="password" v-model="newUser.password" placeholder="password" />
-            <button class="btn btn-warning" type="submit">Create Account</button>
-          </form>
-          <div class="action">
-            <router-link :to="{name: 'login'}">
-              <p>Already have an account? Click here to Login</p>
-            </router-link>
+          <div id="register-form">
+            <form @submit.prevent="register">
+              <input type="text" v-model="newUser.name" placeholder="name" />
+              <input type="email" v-model="newUser.email" placeholder="email" />
+              <input type="password" v-model="newUser.password" placeholder="password" />
+              <button type="submit">Go</button>
+            </form>
           </div>
         </div>
+      </div>
+      <div class="col d-flex justify-content-center" id="nav-footer">
+        <router-link class="links" :to="{ name: 'landing' }">Home</router-link>
+        <p>|</p>
+        <router-link class="links" :to="{ name: 'login' }">Login</router-link>
       </div>
     </div>
   </div>
@@ -36,7 +38,7 @@ export default {
   },
   beforeCreate() {
     if (this.$store.state.user._id) {
-      this.$router.push({ name: "boards" });
+      this.$router.push({ name: "houses" });
     }
   },
   methods: {
@@ -51,20 +53,37 @@ export default {
 .house {
   display: flex;
 }
+
+.links {
+  color: black;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#nav-footer {
+  margin-top: 5px;
+}
+
+#register-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .arrow-up {
   margin: auto;
   margin-top: 75px;
   width: 0;
   height: 0;
-  border-left: 150px solid transparent;
-  border-right: 150px solid transparent;
-  border-bottom: 150px solid rgb(109, 54, 54);
+  border-left: 173px solid transparent;
+  border-right: 173px solid transparent;
+  border-bottom: 140px solid rgb(142, 184, 231);
 }
 .body {
   position: relative;
   margin: auto;
   width: 0;
   margin-top: -1px;
-  border: 130px solid rgb(109, 54, 54);
+  border: 155px solid rgb(142, 184, 231);
+  height: 370px;
 }
 </style>

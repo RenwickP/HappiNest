@@ -6,8 +6,14 @@
       </div>
       <div class="col">
         <div class="body">
-          <h4 v-if="fakeHouse">{{fakeHouse}}</h4>
-          <div class="fake-rooms" v-for="fakeRoom in fakeRooms" :key="fakeRoom">{{fakeRoom}}</div>
+          <div v-if="fakeHouse" id="house-title">
+            <h4>{{ fakeHouse }}</h4>
+          </div>
+
+          <div class="fake-rooms" v-for="fakeRoom in fakeRooms" :key="fakeRoom">
+            <h3 id="room-name">{{ fakeRoom }}</h3>
+          </div>
+
           <div class="roommate-form">
             <form v-if="!fakeHouse" @submit.prevent="createHouseName">
               <input type="text" placeholder="Name Your House" v-model="newHouse" />
@@ -18,10 +24,11 @@
           </div>
         </div>
       </div>
+
       <div class="col d-flex login">
-        <router-link :to="{name: 'login'}" id="login">Login</router-link>
-        <h3>|</h3>
-        <router-link :to="{name: 'register'}" id="register">Register</router-link>
+        <router-link class="links" :to="{ name: 'login' }" id="login">Login</router-link>
+        <p>|</p>
+        <router-link class="links" :to="{ name: 'register' }" id="register">Register</router-link>
       </div>
     </div>
   </div>
@@ -69,9 +76,16 @@ export default {
 h4 {
   color: white;
 }
-.fake-rooms {
-  color: white;
+#room-name {
+  background-color: white;
+  width: 72vw;
+  height: 20vh;
+  top: -90px;
+  right: -135px;
+  text-align: center;
+  display: flex;
 }
+
 .house {
   display: flex;
 }
@@ -80,19 +94,25 @@ h4 {
   margin-top: 75px;
   width: 0;
   height: 0;
-  border-left: 150px solid transparent;
-  border-right: 150px solid transparent;
-  border-bottom: 150px solid rgb(109, 54, 54);
+  border-left: 173px solid transparent;
+  border-right: 173px solid transparent;
+  border-bottom: 140px solid rgb(142, 184, 231);
 }
+
+.links {
+  color: black;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 .body {
-  position: relative;
   margin: auto;
   width: 0;
   margin-top: -1px;
-  border: 130px solid rgb(109, 54, 54);
+  border: 155px solid rgb(142, 184, 231);
 }
 .login {
-  margin-top: 30px;
+  margin-top: 5px;
   justify-content: center;
 }
 .btn-primary {
