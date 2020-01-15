@@ -6,7 +6,10 @@ import Landing from "../views/Landing.vue";
 import Login from "../views/Login.vue";
 // @ts-ignore
 import Register from "../views/Register.vue";
+// @ts-ignore
 import Houses from "../views/Houses.vue";
+// @ts-ignore
+import House from "../views/House.vue";
 
 Vue.use(Router);
 
@@ -31,6 +34,11 @@ export default new Router({
       path: "/houses",
       name: "houses",
       component: Houses
+    },
+    {
+      path: "/house",
+      name: "house",
+      component: House
     },
     {
       path: "*",
