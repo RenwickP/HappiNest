@@ -5,16 +5,8 @@ import ApiError from "../utils/ApiError";
 const _repository = mongoose.model("Profile", Profile);
 
 class ProfileService {
-  async getAll(userId) {
-    return await _repository.find({ authorId: userId });
-  }
-
-  async getById(id, userId) {
-    let data = await _repository.findOne({ _id: id, authorId: userId });
-    if (!data) {
-      throw new ApiError("Invalid ID or you do not own this board", 400);
-    }
-    return data;
+  async getProfileByUserId(userId) {
+    return await _repository.find({ userId: userId });
   }
 
   async create(rawData) {
@@ -36,16 +28,6 @@ class ProfileService {
       throw new ApiError("Invalid ID or you do not own this board", 400);
     }
     return data;
-  }
-
-  async delete(id, userId) {
-    let data = await _repository.findOneAndRemove({
-      _id: id,
-      authorId: userId
-    });
-    if (!data) {
-      throw new ApiError("Invalid ID or you do not own this board", 400);
-    }
   }
 }
 
