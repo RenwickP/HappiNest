@@ -13,6 +13,7 @@ export default class UsersController {
       .delete("/logout", this.logout)
       .use(Authorize.authenticated)
       .get("/authenticate", this.authenticate)
+      .get("/:id/profiles", this.getProfileByUserId)
       .use(this.defaultRoute);
   }
 
@@ -51,7 +52,14 @@ export default class UsersController {
       next(err);
     }
   }
-
+  async getProfileByUserId(req, res, next) {
+    try {
+      let data = await _profilesService.getProfileByUserId(req.session.uid);
+      return res.send(data);
+    } catch (error) {
+      next(error);
+    }
+  }
   async logout(req, res, next) {
     try {
       req.session.destroy(err => {
