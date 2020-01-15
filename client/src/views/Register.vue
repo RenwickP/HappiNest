@@ -9,6 +9,7 @@
               <input type="text" v-model="newUser.name" placeholder="name" />
               <input type="email" v-model="newUser.email" placeholder="email" />
               <input type="password" v-model="newUser.password" placeholder="password" />
+              <button type="submit">Go</button>
             </form>
           </div>
         </div>
@@ -37,7 +38,7 @@ export default {
   },
   beforeCreate() {
     if (this.$store.state.user._id) {
-      this.$router.push({ name: "boards" });
+      this.$router.push({ name: "houses" });
     }
   },
   methods: {

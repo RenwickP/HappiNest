@@ -6,6 +6,7 @@ import Landing from "../views/Landing.vue";
 import Login from "../views/Login.vue";
 // @ts-ignore
 import Register from "../views/Register.vue";
+import Houses from "../views/Houses.vue";
 
 Vue.use(Router);
 
@@ -25,6 +26,11 @@ export default new Router({
       path: "/register",
       name: "register",
       component: Register
+    },
+    {
+      path: "/houses",
+      name: "houses",
+      component: Houses
     },
     {
       path: "*",

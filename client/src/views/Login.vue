@@ -37,7 +37,7 @@ export default {
   },
   beforeCreate() {
     if (this.$store.state.user._id) {
-      this.$router.push({ name: "boards" });
+      this.$router.push({ name: "houses" });
     }
   },
   methods: {
