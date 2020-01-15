@@ -22,17 +22,27 @@ export default new Vuex.Store({
     user: {},
     fakeRooms: [],
     fakeHouse: "",
-    profiles: []
+    profiles: [],
+    houses: []
   },
   mutations: {
     setUser(state, user) {
       state.user = user;
+    },
+    resetState(state) {
+      state.user = {},
+        state.profiles = [],
+        state.houses = []
     },
     addFakeRoom(state, room) {
       state.fakeRooms.push(room);
     },
     addFakeHouse(state, house) {
       state.fakeHouse = house;
+    },
+    //FOR HOUSES
+    setHouse(state, house) {
+      state.houses.push(house)
     }
   },
   actions: {
@@ -50,6 +60,7 @@ export default new Vuex.Store({
       try {
         let user = await AuthService.Login(creds);
         commit("setUser", user);
+
         router.push({ name: "houses" });
       } catch (e) {
         console.warn(e.message);
@@ -73,6 +84,12 @@ export default new Vuex.Store({
     },
     createHouseName({ commit, dispatch }, house) {
       commit("addFakeHouse", house);
+    },
+    //#region -- HOUSE FUNCTIONS --
+    async createHouse({ commit, dispatch }, newHouse) {
+      let res = await api.post('houses', newHouse)
+      commit('setHouse', res.data)
     }
+    //#endregion
   }
 });

@@ -20,6 +20,8 @@
   </div>
 </template>
 
+//NOTE PASS USERID INTO EDIT & DELETE HOUSE FUNCTION
+
 <script>
 import room from "@/components/Room";
 
