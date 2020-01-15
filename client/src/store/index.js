@@ -3,6 +3,8 @@ import Vuex from "vuex";
 import Axios from "axios";
 import router from "../router/index";
 import AuthService from "../AuthService";
+import ApiError from "../../../server/utils/ApiError";
+import _profilesService from "../../../server/services/ProfilesService";
 
 Vue.use(Vuex);
 
@@ -23,7 +25,8 @@ export default new Vuex.Store({
     fakeRooms: [],
     fakeHouse: "",
     profiles: [],
-    houses: []
+    houses: [],
+    activeProfile: {}
   },
   mutations: {
     setUser(state, user) {
@@ -43,6 +46,10 @@ export default new Vuex.Store({
     //FOR HOUSES
     setHouse(state, house) {
       state.houses.push(house)
+    },
+    setActiveProfile(state, profile) {
+      state.activeProfile = profile
+      console.log(state.activeProfile)
     }
   },
   actions: {
@@ -61,6 +68,10 @@ export default new Vuex.Store({
         let user = await AuthService.Login(creds);
         commit("setUser", user);
 
+        // MOVE TO AUTH SERVICE TO KEEP CREDENTIALS 
+
+        // let profile = await Axios.get(base + "account/" + user._id + "/profiles")
+        // commit("setActiveProfile", profile)
         router.push({ name: "houses" });
       } catch (e) {
         console.warn(e.message);

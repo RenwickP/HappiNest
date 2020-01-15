@@ -31,9 +31,8 @@ export default new Router({
       component: Register
     },
     {
-      path: "/houses/:profileId",
+      path: "/houses",
       name: "houses",
-      props: true,
       component: Houses
     },
     {
