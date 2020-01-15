@@ -2,6 +2,7 @@
   <div class="houses row">
     <div class="col d-flex flex-column" id="houses-div">
       <div id="add-house-btn">
+        <button @click="logout">Logout</button>
         <i class="fas fa-plus-circle fa-2x"></i>
       </div>
 
@@ -17,7 +18,7 @@
 export default {
   name: "houses",
   mounted() {
-    this.$store.dispatch("getHouses");
+    // this.$store.dispatch("getHouses");
   },
   data() {
     return {
@@ -35,6 +36,9 @@ export default {
     addHouse() {
       this.$store.dispatch("addHouse", this.newHouse);
       this.newHouse = { title: "", description: "" };
+    },
+    logout() {
+      this.$store.dispatch("logout");
     }
   }
 };
