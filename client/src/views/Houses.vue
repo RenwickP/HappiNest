@@ -2,14 +2,19 @@
   <div class="houses row">
     <div class="col d-flex flex-column" id="houses-div">
       <div id="add-house-btn">
-        <button @click="logout">Logout</button>
-        <i class="fas fa-plus-circle fa-2x"></i>
+        <form @submit.prevent="createHouse">
+          <input v-model="newHouse.title" id="title" type="text" placeholder="New house name..." />
+          <button>
+            <i class="fas fa-plus-circle fa-2x"></i>
+          </button>
+        </form>
       </div>
 
       <div id="house-icons-row">
         <i class="fas fa-home fa-3x"></i>
         <h5>Name of House</h5>
       </div>
+      <button @click.prevent="logout">Logout</button>
     </div>
   </div>
 </template>
@@ -33,9 +38,10 @@ export default {
     }
   },
   methods: {
-    addHouse() {
-      this.$store.dispatch("addHouse", this.newHouse);
-      this.newHouse = { title: "", description: "" };
+    createHouse() {
+      let house = { ...this.newHouse };
+      this.$store.dispatch("createHouse", house);
+      this.newHouse = { title: "" };
     },
     logout() {
       this.$store.dispatch("logout");
