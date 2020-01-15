@@ -9,8 +9,8 @@
           <div v-if="fakeHouse" id="house-title">
             <h4>{{ fakeHouse }}</h4>
           </div>
-          <div class="fake-rooms" v-for="fakeRoom in fakeRooms" :key="fakeRoom">
-            <h3>{{ fakeRoom }}</h3>
+          <div class="fake-rooms">
+            <h3 v-for="fakeRoom in fakeRooms" :key="fakeRoom" id="room-name">{{ fakeRoom }}</h3>
           </div>
           <div class="roommate-form">
             <form v-if="!fakeHouse" @submit.prevent="createHouseName">
@@ -73,14 +73,15 @@ export default {
 h4 {
   color: white;
 }
-.fake-rooms {
-  color: black;
+#room-name {
   background-color: white;
-  width: 74vw;
-  height: 22vh;
+  width: 72vw;
+  height: 20vh;
   position: absolute;
-  top: -97px;
-  left: -139px;
+  top: -90px;
+  right: -135px;
+  text-align: center;
+  display: flex;
 }
 #house-title {
   width: 60vw;
