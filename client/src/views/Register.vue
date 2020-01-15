@@ -8,16 +8,12 @@
             <form @submit.prevent="register">
               <input type="text" v-model="newUser.name" placeholder="name" />
               <input type="email" v-model="newUser.email" placeholder="email" />
-              <input
-                type="password"
-                v-model="newUser.password"
-                placeholder="password"
-              />
+              <input type="password" v-model="newUser.password" placeholder="password" />
             </form>
           </div>
         </div>
       </div>
-      <div class="col d-flex justify-content-center">
+      <div class="col d-flex justify-content-center" id="nav-footer">
         <router-link class="links" :to="{ name: 'landing' }">Home</router-link>
         <p>|</p>
         <router-link class="links" :to="{ name: 'login' }">Login</router-link>
@@ -61,6 +57,10 @@ export default {
   color: black;
   margin-left: 5px;
   margin-right: 5px;
+}
+
+#nav-footer {
+  margin-top: 5px;
 }
 
 #register-form {

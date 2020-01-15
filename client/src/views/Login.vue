@@ -6,21 +6,18 @@
       </div>
       <div class="col">
         <div class="body">
-          <form @submit.prevent="loginUser">
-            <input type="email" v-model="creds.email" placeholder="email" />
-            <input
-              type="password"
-              v-model="creds.password"
-              placeholder="password"
-            />
-            <button class="btn btn-success" type="submit">Login</button>
-          </form>
-          <div class="action">
-            <router-link :to="{ name: 'register' }">
-              <p>No account? Click here to Register</p>
-            </router-link>
+          <div id="login-form">
+            <form @submit.prevent="loginUser">
+              <input type="email" v-model="creds.email" placeholder="email" />
+              <input type="password" v-model="creds.password" placeholder="password" />
+            </form>
           </div>
         </div>
+      </div>
+      <div class="col d-flex" id="footer-nav">
+        <router-link class="links" :to="{ name: 'landing' }">Home</router-link>
+        <p>|</p>
+        <router-link class="links" :to="{ name: 'register' }">Register</router-link>
       </div>
     </div>
   </div>
@@ -55,20 +52,36 @@ export default {
 .house {
   display: flex;
 }
+#login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .arrow-up {
   margin: auto;
   margin-top: 75px;
   width: 0;
   height: 0;
-  border-left: 150px solid transparent;
-  border-right: 150px solid transparent;
-  border-bottom: 150px solid rgb(109, 54, 54);
+  border-left: 173px solid transparent;
+  border-right: 173px solid transparent;
+  border-bottom: 140px solid rgb(142, 184, 231);
+}
+.links {
+  color: black;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 .body {
   position: relative;
   margin: auto;
   width: 0;
   margin-top: -1px;
-  border: 130px solid rgb(109, 54, 54);
+  border: 155px solid rgb(142, 184, 231);
+}
+
+#footer-nav {
+  justify-content: center;
+  margin-top: 5px;
 }
 </style>

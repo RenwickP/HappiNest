@@ -6,36 +6,26 @@
       </div>
       <div class="col">
         <div class="body">
-          <h4 v-if="fakeHouse">{{ fakeHouse }}</h4>
+          <div v-if="fakeHouse" id="house-title">
+            <h4>{{ fakeHouse }}</h4>
+          </div>
           <div class="fake-rooms" v-for="fakeRoom in fakeRooms" :key="fakeRoom">
-            {{ fakeRoom }}
+            <h3>{{ fakeRoom }}</h3>
           </div>
           <div class="roommate-form">
             <form v-if="!fakeHouse" @submit.prevent="createHouseName">
-              <input
-                type="text"
-                placeholder="Name Your House"
-                v-model="newHouse"
-              />
+              <input type="text" placeholder="Name Your House" v-model="newHouse" />
             </form>
             <form @submit.prevent="createFakeRoom">
-              <input
-                type="text"
-                placeholder="Add A Roommate"
-                v-model="roommateName"
-              />
+              <input type="text" placeholder="Add A Roommate" v-model="roommateName" />
             </form>
           </div>
         </div>
       </div>
       <div class="col d-flex login">
-        <router-link class="links" :to="{ name: 'login' }" id="login"
-          >Login</router-link
-        >
+        <router-link class="links" :to="{ name: 'login' }" id="login">Login</router-link>
         <p>|</p>
-        <router-link class="links" :to="{ name: 'register' }" id="register"
-          >Register</router-link
-        >
+        <router-link class="links" :to="{ name: 'register' }" id="register">Register</router-link>
       </div>
     </div>
   </div>
@@ -84,7 +74,19 @@ h4 {
   color: white;
 }
 .fake-rooms {
-  color: white;
+  color: black;
+  background-color: white;
+  width: 74vw;
+  height: 22vh;
+  position: absolute;
+  top: -97px;
+  left: -139px;
+}
+#house-title {
+  width: 60vw;
+  position: absolute;
+  top: -136px;
+  left: -107px;
 }
 .house {
   display: flex;
