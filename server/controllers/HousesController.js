@@ -30,7 +30,6 @@ export default class HousesController {
 
   async createHouse(req, res, next) {
     try {
-      req.body.creator = req.session.uid;
       let data = await _housesService.createHouse(req.body);
       return res.status(201).send(data);
     } catch (error) {

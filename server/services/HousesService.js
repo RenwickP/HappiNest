@@ -5,15 +5,13 @@ import House from "../models/House";
 const _repository = mongoose.model("House", House);
 
 class HousesService {
-  // async getById(id, userId) {
-  //   let data = await _repository.findOne({ _id: id, authorId: userId });
-  //   if (!data) {
-  //     throw new ApiError("Invalid ID or you do not own this board", 400);
-  //   }
-  //   return data;
-  // }
+  async getHousesByProfileId(id) {
+    return await _repository.find({ profiles: id });
+  }
 
   async createHouse(rawData) {
+    rawData.admins = rawData.creator;
+    rawData.profiles = rawData.creator;
     let data = await _repository.create(rawData);
     return data;
   }

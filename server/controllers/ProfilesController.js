@@ -1,6 +1,7 @@
 import _profilesService from "../services/ProfilesService";
 import express from "express";
 import { Authorize } from "../middleware/authorize.js";
+import _housesService from "../services/HousesService";
 
 //PUBLIC
 export default class ProfilesController {
@@ -8,9 +9,8 @@ export default class ProfilesController {
     this.router = express
       .Router()
       .use(Authorize.authenticated)
-
-      .get("", this.getAll)
       .get("/:id", this.getById)
+      .get("/:id/houses", this.getHousesByProfileId)
       .post("", this.create)
       .put("/:id", this.edit)
       .delete("/:id", this.delete)
@@ -21,15 +21,6 @@ export default class ProfilesController {
     next({ status: 404, message: "No Such Route" });
   }
 
-  async getAll(req, res, next) {
-    try {
-      let data = await _housesService.getAll(req.session.uid);
-      return res.send(data);
-    } catch (err) {
-      next(err);
-    }
-  }
-
   async getById(req, res, next) {
     try {
       let data = await _boardService.getById(req.params.id, req.session.uid);
@@ -38,7 +29,14 @@ export default class ProfilesController {
       next(error);
     }
   }
-
+  async getHousesByProfileId(req, res, next) {
+    try {
+      let data = await _housesService.getHousesByProfileId(req.params.id);
+      return res.send(data);
+    } catch (error) {
+      next(error);
+    }
+  }
   async create(req, res, next) {
     try {
       req.body.authorId = req.session.uid;

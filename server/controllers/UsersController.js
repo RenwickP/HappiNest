@@ -10,9 +10,9 @@ export default class UsersController {
       .Router()
       .post("/register", this.register)
       .post("/login", this.login)
+      .delete("/logout", this.logout)
       .use(Authorize.authenticated)
       .get("/authenticate", this.authenticate)
-      .delete("/logout", this.logout)
       .use(this.defaultRoute);
   }
 
