@@ -21,7 +21,8 @@ export default new Vuex.Store({
   state: {
     user: {},
     fakeRooms: [],
-    fakeHouse: ""
+    fakeHouse: "",
+    profiles: []
   },
   mutations: {
     setUser(state, user) {

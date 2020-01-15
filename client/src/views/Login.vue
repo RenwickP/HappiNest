@@ -10,6 +10,7 @@
             <form @submit.prevent="loginUser">
               <input type="email" v-model="creds.email" placeholder="email" />
               <input type="password" v-model="creds.password" placeholder="password" />
+              <button type="submit" class="btn btn-primary">Login</button>
             </form>
           </div>
         </div>
