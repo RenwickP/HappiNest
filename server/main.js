@@ -13,7 +13,7 @@ server.use(express.static(__dirname + "/../client/dist"));
 
 var whitelist = ["http://localhost:8080"];
 var corsOptions = {
-  origin: function(origin, callback) {
+  origin: function (origin, callback) {
     var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
     callback(null, originIsWhitelisted);
   },

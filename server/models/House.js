@@ -6,8 +6,7 @@ const House = new Schema(
   {
     title: { type: String, required: true },
     creator: { type: ObjectId, ref: "Profile", required: true },
-    admins: { type: Array },
-    profiles: { type: Array }
+    admins: { type: Array }
   },
   { timestamps: true }
 );
