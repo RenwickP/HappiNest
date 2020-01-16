@@ -36,7 +36,7 @@ export default new Router({
       component: Houses
     },
     {
-      path: "/house",
+      path: "/house/:id",
       name: "house",
       component: House
     },

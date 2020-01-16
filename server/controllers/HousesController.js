@@ -7,7 +7,9 @@ export default class HousesController {
   constructor() {
     this.router = express
       .Router()
+
       .use(Authorize.authenticated)
+      .get("/:id", this.getHouseById)
       .post("", this.createHouse)
       .put("/:id", this.edit)
       .delete("/:id", this.delete)
@@ -16,6 +18,15 @@ export default class HousesController {
 
   defaultRoute(req, res, next) {
     next({ status: 404, message: "No Such Route" });
+  }
+
+  async getHouseById(req, res, next) {
+    try {
+      let data = await _housesService.getHouseById(req.params.id);
+      return res.send(data);
+    } catch (error) {
+      next(error);
+    }
   }
 
   async createHouse(req, res, next) {
