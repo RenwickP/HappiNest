@@ -33,9 +33,7 @@ export default new Vuex.Store({
       state.user = user;
     },
     resetState(state) {
-      state.user = {},
-        state.profiles = [],
-        state.houses = []
+      (state.user = {}), (state.profiles = []), (state.houses = []);
     },
     addFakeRoom(state, room) {
       state.fakeRooms.push(room);
@@ -45,11 +43,11 @@ export default new Vuex.Store({
     },
     //FOR HOUSES
     setHouse(state, house) {
-      state.houses.push(house)
+      state.houses.push(house);
     },
     setActiveProfile(state, profile) {
-      state.activeProfile = profile
-      console.log(state.activeProfile)
+      state.activeProfile = profile.data[0];
+      console.log(state.activeProfile);
     }
   },
   actions: {
@@ -68,10 +66,7 @@ export default new Vuex.Store({
         let user = await AuthService.Login(creds);
         commit("setUser", user);
 
-        // MOVE TO AUTH SERVICE TO KEEP CREDENTIALS 
-
-        // let profile = await Axios.get(base + "account/" + user._id + "/profiles")
-        // commit("setActiveProfile", profile)
+        // MOVE TO AUTH SERVICE TO KEEP CREDENTIALS
         router.push({ name: "houses" });
       } catch (e) {
         console.warn(e.message);
@@ -98,8 +93,8 @@ export default new Vuex.Store({
     },
     //#region -- HOUSE FUNCTIONS --
     async createHouse({ commit, dispatch }, newHouse) {
-      let res = await api.post('houses', newHouse)
-      commit('setHouse', res.data)
+      let res = await api.post("houses", newHouse);
+      commit("setHouse", res.data);
     }
     //#endregion
   }
