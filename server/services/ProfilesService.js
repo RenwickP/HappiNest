@@ -8,6 +8,9 @@ class ProfileService {
   async getProfileByUserId(userId) {
     return await _repository.find({ userId: userId });
   }
+  async getByUserId(userId) {
+    return await _repository.find({ userId: userId });
+  }
 
   async create(rawData) {
     let newData = {

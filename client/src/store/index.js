@@ -29,8 +29,12 @@ export default new Vuex.Store({
     activeProfile: {}
   },
   mutations: {
+    setResource(state, payload) {
+      state[payload.resource] = payload.data;
+    },
     setUser(state, user) {
       state.user = user;
+      console.log(state.user);
     },
     resetState(state) {
       (state.user = {}), (state.profiles = []), (state.houses = []);
@@ -48,9 +52,18 @@ export default new Vuex.Store({
     setActiveProfile(state, profile) {
       state.activeProfile = profile.data[0];
       console.log(state.activeProfile);
+    },
+    setProfile(state, prof) {
+      state.activeProfile = prof;
+      console.log(state.activeProfile);
     }
   },
   actions: {
+    async setActiveProfile({ commit, dispatch }, userId) {
+      let profile = await api.get("profiles", userId);
+      commit("setActiveProfile", profile);
+    },
+
     //#region -- AUTH STUFF --
     async register({ commit, dispatch }, creds) {
       try {
@@ -65,8 +78,6 @@ export default new Vuex.Store({
       try {
         let user = await AuthService.Login(creds);
         commit("setUser", user);
-
-        // MOVE TO AUTH SERVICE TO KEEP CREDENTIALS
         router.push({ name: "houses" });
       } catch (e) {
         console.warn(e.message);
@@ -95,6 +106,11 @@ export default new Vuex.Store({
     async createHouse({ commit, dispatch }, newHouse) {
       let res = await api.post("houses", newHouse);
       commit("setHouse", res.data);
+    },
+
+    async getHousesForProfile({ commit, dispatch }, profileId) {
+      let res = await api.get("profiles/" + profileId + "/houses");
+      commit("setResource", { resource: "houses", data: res.data });
     }
     //#endregion
   }
