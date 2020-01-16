@@ -30,7 +30,6 @@ class HousesService {
     this.createHouseRel(relData)
     return data;
   }
-
   async edit(id, update) {
     if (update.admins == update.profileId) {
       let data = await _repository.findOneAndUpdate({ _id: id }, update, {

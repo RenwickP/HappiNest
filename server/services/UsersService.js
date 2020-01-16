@@ -2,6 +2,7 @@ import mongoose from "mongoose"
 import bcrypt from 'bcryptjs'
 import User from "../models/User"
 import ApiError from "../utils/ApiError"
+import _profilesService from "./ProfilesService"
 
 //bcrypt uses hashing and salt to obfiscate your password 
 const SALT = 10
@@ -36,6 +37,17 @@ class UsersService {
     //ALWAYS REMOVE THE PASSWORD FROM THE USER OBJECT
     delete user._doc.hash
     return user
+  }
+  async getByEmail(body) {
+    let hId = body._id
+    let user = await _repository.find({ email: body.email })
+    // if (!user) {
+    //   throw new ApiError("Account does not exist with that email")
+    // }
+    let roomData = {}
+    roomData.userId = user[0].id
+    roomData.houseId = hId
+    _profilesService.getProfileByUser(roomData)
   }
 
   async authenticate(id) {

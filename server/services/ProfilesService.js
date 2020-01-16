@@ -1,12 +1,21 @@
 import mongoose from "mongoose";
 import Profile from "../models/Profile";
 import ApiError from "../utils/ApiError";
+import _housesService from "../services/HousesService"
 
 const _repository = mongoose.model("Profile", Profile);
 
 class ProfileService {
   async getProfileByUserId(userId) {
     return await _repository.find({ userId: userId });
+  }
+  async getProfileByUser(roomData) {
+    let hId = roomData.houseId
+    let data = await _repository.find({ userId: roomData.userId });
+    let relData = {}
+    relData.houseId = hId
+    relData.profileId = data[0].id
+    _housesService.createHouseRel(relData)
   }
   async getByUserId(userId) {
     return await _repository.find({ userId: userId });

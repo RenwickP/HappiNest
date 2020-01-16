@@ -14,6 +14,7 @@ export default class UsersController {
       .use(Authorize.authenticated)
       .get("/authenticate", this.authenticate)
       .get("/:id/profiles", this.getProfileByUserId)
+      .get("", this.getByEmail)
       .use(this.defaultRoute);
   }
 
@@ -58,6 +59,14 @@ export default class UsersController {
       return res.send(data);
     } catch (error) {
       next(error);
+    }
+  }
+  async getByEmail(req, res, next) {
+    try {
+      let data = await _usersService.getByEmail(req.body)
+      return res.send(data)
+    } catch (error) {
+      next(error)
     }
   }
   async logout(req, res, next) {

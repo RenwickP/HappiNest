@@ -1,6 +1,7 @@
 import _housesService from "../services/HousesService.js";
 import express from "express";
 import { Authorize } from "../middleware/authorize.js";
+import _usersService from "../services/UsersService"
 
 //PUBLIC
 export default class HousesController {
@@ -9,6 +10,7 @@ export default class HousesController {
       .Router()
       .use(Authorize.authenticated)
       .post("", this.createHouse)
+      .post("/:id", this.addRoom)
       .put("/:id", this.edit)
       .delete("/:id", this.delete)
       .use(this.defaultRoute);
@@ -21,6 +23,14 @@ export default class HousesController {
   async createHouse(req, res, next) {
     try {
       let data = await _housesService.createHouse(req.body);
+      return res.status(201).send(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+  async addRoom(req, res, next) {
+    try {
+      let data = await _usersService.getByEmail(req.body);
       return res.status(201).send(data);
     } catch (error) {
       next(error);
