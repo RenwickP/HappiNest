@@ -9,6 +9,7 @@ export default class ProfilesController {
     this.router = express
       .Router()
       .use(Authorize.authenticated)
+      .get("", this.getByUserId)
       .get("/:id/houses", this.getHousesByProfileId)
       .post("", this.create)
       .put("/:id", this.edit)
@@ -18,6 +19,14 @@ export default class ProfilesController {
 
   defaultRoute(req, res, next) {
     next({ status: 404, message: "No Such Route" });
+  }
+  async getByUserId(req, res, next) {
+    try {
+      let data = await _profilesService.getByUserId(req.session.uid);
+      return res.send(data);
+    } catch (error) {
+      next(error);
+    }
   }
 
   async getHousesByProfileId(req, res, next) {

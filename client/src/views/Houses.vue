@@ -10,9 +10,9 @@
         </form>
       </div>
 
-      <div id="house-icons-row">
+      <div id="house-icons-row" v-for="house in houses" :key="house._id">
         <i class="fas fa-home fa-3x"></i>
-        <h5>Name of House</h5>
+        <h5>{{house.title}}</h5>
       </div>
       <button @click.prevent="logout">Logout</button>
     </div>
@@ -23,12 +23,17 @@
 export default {
   name: "houses",
   mounted() {
-    // this.$store.dispatch("getHouses");
+    this.$store.dispatch(
+      "getHousesForProfile",
+      this.$store.state.activeProfile.id
+    );
+    this.$store.dispatch("setActiveProfile", this.$store.state.user._id);
   },
   data() {
     return {
       newHouse: {
-        title: ""
+        title: "",
+        creator: this.$store.state.activeProfile.id
       }
     };
   },
@@ -39,9 +44,13 @@ export default {
   },
   methods: {
     createHouse() {
+      debugger;
       let house = { ...this.newHouse };
       this.$store.dispatch("createHouse", house);
-      this.newHouse = { title: "" };
+      this.newHouse = {
+        title: "",
+        creator: this.$store.state.activeProfile._id
+      };
     },
     logout() {
       this.$store.dispatch("logout");
