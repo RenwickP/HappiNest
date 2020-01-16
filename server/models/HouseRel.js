@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 let Schema = mongoose.Schema;
 let ObjectId = Schema.Types.ObjectId;
 
-const Roommate = new Schema(
+const HouseRel = new Schema(
   {
     houseId: { type: ObjectId, ref: "House", required: true },
     profileId: { type: ObjectId, ref: "Profile", required: true }
@@ -10,4 +10,4 @@ const Roommate = new Schema(
   { timestamps: true, toJSON: { virtuals: true } }
 );
 
-export default Roommate;
+export default HouseRel;

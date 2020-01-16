@@ -10,6 +10,7 @@ export default class ProfilesController {
       .Router()
       .use(Authorize.authenticated)
       .get("/:id/houses", this.getHousesByProfileId)
+      .get("/:id/rels", this.getRelsByProfile)
       .post("", this.create)
       .put("/:id", this.edit)
       .delete("/:id", this.delete)
@@ -22,10 +23,18 @@ export default class ProfilesController {
 
   async getHousesByProfileId(req, res, next) {
     try {
-      let data = await _housesService.getHousesByProfileId(req.params.id);
+      // let data = await _housesService.getHousesByProfileId(req.params.id);
       return res.send(data);
     } catch (error) {
       next(error);
+    }
+  }
+  async getRelsByProfile(req, res, next) {
+    try {
+      let data = await _housesService.getRelsByProfile(req.params.id)
+      return res.send(data)
+    } catch (error) {
+      next(error)
     }
   }
   async create(req, res, next) {
