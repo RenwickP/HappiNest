@@ -26,6 +26,8 @@ export default class AuthService {
   static async Register(creds) {
     try {
       let res = await auth.post("register", creds);
+      let profile = await auth.get("" + res.data._id + "/profiles");
+      _store.commit("setActiveProfile", profile);
       return res.data;
     } catch (e) {
       throw new Error(
