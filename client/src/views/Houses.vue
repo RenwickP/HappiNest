@@ -35,8 +35,6 @@ export default {
   name: "houses",
   mounted() {
     this.$store.dispatch("setActiveProfile", this.$store.state.user._id);
-
-    // this.$store.dispatch("getHousesForProfile", this.activeProfile._id);
   },
   data() {
     return {

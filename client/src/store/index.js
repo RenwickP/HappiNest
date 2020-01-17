@@ -18,6 +18,13 @@ let api = Axios.create({
   timeout: 3000,
   withCredentials: true
 });
+let robo = Axios.create({
+  baseURL: "https://robohash.p.rapidapi.com/index.php",
+  headers: {
+    "x-rapidapi-host": "robohash.p.rapidapi.com",
+    "x-rapidapi-key": "159f8ae7dbmshcb77305ee28c85fp18d00fjsn0ebaae29dd4e"
+  }
+});
 
 export default new Vuex.Store({
   state: {
@@ -28,7 +35,11 @@ export default new Vuex.Store({
     houses: [],
     activeProfile: {},
     activeHouse: {},
-    houseChores: []
+
+    houseChores: [],
+
+    robos: []
+
   },
   mutations: {
     setResource(state, payload) {
@@ -56,13 +67,32 @@ export default new Vuex.Store({
 
     setActiveHouse(state, house) {
       state.activeHouse = house[0];
+    },
+    setProfiles(state, profiles) {
+      if (state.profiles.length == 0) {
+        state.profiles.push(profiles[0].profileId);
+      } else {
+        for (let i = 0; i < state.profiles.length; i++) {
+          const elem = state.profiles[i];
+          if (profiles[0].profileId._id != elem._id) {
+            state.profiles.push(profiles[0].profileId);
+          } else {
+            break;
+          }
+        }
+      }
+      console.log("from profiles", state.profiles);
+    },
+    setRobos(state, img) {
+      state.robos.push(img);
     }
   },
   actions: {
     async setActiveProfile({ commit, dispatch }, userId) {
       let profile = await api.get("profiles", userId);
-      commit("setActiveProfile", profile);
+      // commit("setActiveProfile", profile);
       dispatch("getHousesForProfile", profile.data[0]._id);
+      dispatch("getRobo", profile.data[0]);
     },
 
     //#region -- AUTH STUFF --
@@ -103,6 +133,17 @@ export default new Vuex.Store({
     createHouseName({ commit, dispatch }, house) {
       commit("addFakeHouse", house);
     },
+    async getRobo({ commit, dispatch }, profile) {
+      let res = await robo.get("" + profile.name);
+      let newData = {};
+      newData._id = profile._id;
+      newData.url = res.data.imageUrl;
+      dispatch("editProfile", newData);
+    },
+    async editProfile({ commit, dispatch }, data) {
+      let res = await api.put("profiles/" + data._id, { avatar: data.url });
+      commit("setActiveProfile", res.data);
+    },
     //#region -- HOUSE FUNCTIONS --
     async createHouse({ commit, dispatch }, newHouse) {
       let res = await api.post("houses", newHouse);
@@ -117,9 +158,12 @@ export default new Vuex.Store({
     async setActiveHouse({ commit, dispatch }, id) {
       let res = await api.get("houses/" + id);
       commit("setActiveHouse", res.data);
-      console.log("fromstore", res);
-    }
+    },
 
+    async getProfiles({ commit, dispatch }, id) {
+      let res = await api.get("houses/" + id + "/rels");
+      commit("setProfiles", res.data);
+    }
     //#endregion
   }
 });

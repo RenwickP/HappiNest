@@ -1,8 +1,12 @@
 import _housesService from "../services/HousesService.js";
 import express from "express";
 import { Authorize } from "../middleware/authorize.js";
-import _usersService from "../services/UsersService"
+
+import _usersService from "../services/UsersService";
+
+
 import _choresService from "../services/choresService.js";
+
 
 //PUBLIC
 export default class HousesController {
@@ -11,7 +15,11 @@ export default class HousesController {
       .Router()
       .use(Authorize.authenticated)
       .get("/:id", this.getHouseById)
+
+      .get("/:id/rels", this.getRelsByHouse)
+
       .get("/:id/chores", this.getChoresByHouse)
+
       .post("", this.createHouse)
       .post("/:id", this.addRoom)
       .put("/:id", this.edit)
@@ -26,6 +34,14 @@ export default class HousesController {
   async getHouseById(req, res, next) {
     try {
       let data = await _housesService.getHouseById(req.params.id);
+      return res.send(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+  async getRelsByHouse(req, res, next) {
+    try {
+      let data = await _housesService.getRelsByHouse(req.params.id);
       return res.send(data);
     } catch (error) {
       next(error);

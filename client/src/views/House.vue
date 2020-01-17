@@ -7,10 +7,10 @@
       <div class="col">
         <div class="body">
           <div id="title-div">
-            <h3>{{activeHouse}}</h3>
+            <h3>{{activeHouse.title}}</h3>
           </div>
           <div class="row">
-            <div class="col" v-for="profile in profiles" :key="profile.id">
+            <div class="col" v-for="profile in profiles" :key="profile._id">
               <room :profileData="profile" />
             </div>
           </div>
@@ -33,7 +33,7 @@ export default {
 
   mounted() {
     this.$store.dispatch("setActiveHouse", this.$route.params.houseId);
-    console.log("from house", this.$route.params.houseId);
+    this.$store.dispatch("getProfiles", this.$route.params.houseId);
   },
   data() {
     return {};
