@@ -44,7 +44,7 @@ server.use("/api/chores", new ChoresController().router);
 
 //YOUR ROUTES HERE!!!!!!
 // import NotesController from "./controllers/NotesController";
-// import HouseProfileRelsController from "./controllers/HouseProfileRelsController";
+// import HouseProfileRelsControll er from "./controllers/HouseProfileRelsController";
 // import TasksController from "./controllers/TasksController";
 // import HouseNotesController from "./controllers/HouseNotesController";
 

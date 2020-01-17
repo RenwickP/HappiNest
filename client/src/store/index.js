@@ -35,7 +35,11 @@ export default new Vuex.Store({
     houses: [],
     activeProfile: {},
     activeHouse: {},
+
+    houseChores: [],
+
     robos: []
+
   },
   mutations: {
     setResource(state, payload) {
