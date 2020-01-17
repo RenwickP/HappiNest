@@ -2,15 +2,16 @@ import _housesService from "../services/HousesService.js";
 import express from "express";
 import { Authorize } from "../middleware/authorize.js";
 import _usersService from "../services/UsersService"
+import _choresService from "../services/choresService.js";
 
 //PUBLIC
 export default class HousesController {
   constructor() {
     this.router = express
       .Router()
-
       .use(Authorize.authenticated)
       .get("/:id", this.getHouseById)
+      .get("/:id/chores", this.getChoresByHouse)
       .post("", this.createHouse)
       .post("/:id", this.addRoom)
       .put("/:id", this.edit)
@@ -63,6 +64,16 @@ export default class HousesController {
       return res.send("Successfully deleted");
     } catch (error) {
       next(error);
+    }
+  }
+
+  //CHORES
+  async getChoresByHouse(req, res, next) {
+    try {
+      let data = await _choresService.getChoresByHouse(req.params.id)
+      return res.send(data)
+    } catch (error) {
+      next(error)
     }
   }
 }

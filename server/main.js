@@ -32,13 +32,15 @@ server.use(
 //REGISTER YOUR SESSION, OTHERWISE YOU WILL NEVER GET LOGGED IN
 import Session from "./middleware/session";
 import UsersController from "./controllers/UsersController";
-import HousesController from "./controllers/HousesController";
 import ProfilesController from "./controllers/ProfilesController";
+import HousesController from "./controllers/HousesController";
+import ChoresController from "./controllers/ChoresController";
 
 server.use(new Session().express);
 server.use("/account", new UsersController().router);
 server.use("/api/profiles", new ProfilesController().router);
 server.use("/api/houses", new HousesController().router);
+server.use("/api/chores", new ChoresController().router);
 
 //YOUR ROUTES HERE!!!!!!
 // import NotesController from "./controllers/NotesController";
