@@ -10,6 +10,8 @@ import Register from "../views/Register.vue";
 import Houses from "../views/Houses.vue";
 // @ts-ignore
 import House from "../views/House.vue";
+// @ts-ignore
+import testroute from "../views/TESTStats.vue";
 
 Vue.use(Router);
 
@@ -34,6 +36,11 @@ export default new Router({
       path: "/houses",
       name: "houses",
       component: Houses
+    },
+    {
+      path: "/testroute",
+      name: "testroute",
+      component: testroute
     },
     {
       path: "/house/:id",
