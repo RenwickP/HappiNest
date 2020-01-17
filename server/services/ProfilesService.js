@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import Profile from "../models/Profile";
 import ApiError from "../utils/ApiError";
-import _housesService from "../services/HousesService"
+import _housesService from "../services/HousesService";
 
 const _repository = mongoose.model("Profile", Profile);
 
@@ -10,12 +10,12 @@ class ProfileService {
     return await _repository.find({ userId: userId });
   }
   async getProfileByUser(roomData) {
-    let hId = roomData.houseId
+    let hId = roomData.houseId;
     let data = await _repository.find({ userId: roomData.userId });
-    let relData = {}
-    relData.houseId = hId
-    relData.profileId = data[0].id
-    _housesService.createHouseRel(relData)
+    let relData = {};
+    relData.houseId = hId;
+    relData.profileId = data[0].id;
+    _housesService.createHouseRel(relData);
   }
   async getByUserId(userId) {
     return await _repository.find({ userId: userId });
@@ -32,7 +32,7 @@ class ProfileService {
 
   async edit(id, userId, update) {
     let data = await _repository.findOneAndUpdate(
-      { _id: id, authorId: userId },
+      { _id: id, userId: userId },
       update,
       { new: true }
     );

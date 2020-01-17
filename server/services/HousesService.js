@@ -20,6 +20,13 @@ class HousesService {
       .populate("houseId");
     // returns rel ID
   }
+  async getRelsByHouse(id) {
+    return await _houseRelRepository
+      .find({ houseId: id })
+      // returns rel ID
+      .populate("profileId");
+    // returns rel ID
+  }
   //#endregion
 
   async createHouse(rawData) {
