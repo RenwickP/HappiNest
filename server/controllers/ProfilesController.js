@@ -58,7 +58,7 @@ export default class ProfilesController {
 
   async edit(req, res, next) {
     try {
-      let data = await _boardService.edit(
+      let data = await _profilesService.edit(
         req.params.id,
         req.session.uid,
         req.body
