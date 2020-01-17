@@ -2,13 +2,13 @@ import mongoose from "mongoose";
 let Schema = mongoose.Schema;
 let ObjectId = Schema.Types.ObjectId;
 
-const House = new Schema(
+const Chore = new Schema(
   {
     title: { type: String, required: true },
-    creator: { type: ObjectId, ref: "Profile", required: true },
-    admins: { type: Array }
+    houseId: { type: ObjectId, ref: "House", required: true },
+    profileId: { type: ObjectId, ref: "Profile", required: true },
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );
 
-export default House;
+export default Chore;
