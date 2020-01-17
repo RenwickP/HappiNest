@@ -26,7 +26,8 @@ export default new Vuex.Store({
     fakeHouse: "",
     profiles: [],
     houses: [],
-    activeProfile: {}
+    activeProfile: {},
+    activeHouse: {}
   },
   mutations: {
     setResource(state, payload) {
@@ -34,7 +35,6 @@ export default new Vuex.Store({
     },
     setUser(state, user) {
       state.user = user;
-      console.log(state.user);
     },
     resetState(state) {
       (state.user = {}), (state.profiles = []), (state.houses = []);
@@ -51,17 +51,17 @@ export default new Vuex.Store({
     },
     setActiveProfile(state, profile) {
       state.activeProfile = profile.data[0];
-      console.log(state.activeProfile);
     },
-    setProfile(state, prof) {
-      state.activeProfile = prof;
-      console.log(state.activeProfile);
+
+    setActiveHouse(state, house) {
+      state.activeHouse = house.houseId;
     }
   },
   actions: {
     async setActiveProfile({ commit, dispatch }, userId) {
       let profile = await api.get("profiles", userId);
       commit("setActiveProfile", profile);
+      dispatch("getHousesForProfile", profile.data[0]._id);
     },
 
     //#region -- AUTH STUFF --
@@ -109,9 +109,16 @@ export default new Vuex.Store({
     },
 
     async getHousesForProfile({ commit, dispatch }, profileId) {
-      let res = await api.get("profiles/" + profileId + "/houses");
+      let res = await api.get("profiles/" + profileId + "/rels");
       commit("setResource", { resource: "houses", data: res.data });
+    },
+
+    async setActiveHouse({ commit, dispatch }, id) {
+      let res = await api.get("houses/" + id);
+      commit("setActiveHouse", res.data);
+      console.log("fromstore", res);
     }
+
     //#endregion
   }
 });

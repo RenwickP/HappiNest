@@ -40,10 +40,10 @@ export default class ProfilesController {
   }
   async getRelsByProfile(req, res, next) {
     try {
-      let data = await _housesService.getRelsByProfile(req.params.id)
-      return res.send(data)
+      let data = await _housesService.getRelsByProfile(req.params.id);
+      return res.send(data);
     } catch (error) {
-      next(error)
+      next(error);
     }
   }
   async create(req, res, next) {

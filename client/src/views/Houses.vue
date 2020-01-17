@@ -1,20 +1,31 @@
 <template>
-  <div class="houses row">
-    <div class="col d-flex flex-column" id="houses-div">
-      <div id="add-house-btn">
-        <form @submit.prevent="createHouse">
-          <input v-model="newHouse.title" id="title" type="text" placeholder="New house name..." />
-          <button>
-            <i class="fas fa-plus-circle fa-2x"></i>
-          </button>
-        </form>
+  <div class="houses container-fluid" id="houses-div">
+    <div class="row">
+      <div class="col">
+        <div id="add-house-btn">
+          <form @submit.prevent="createHouse">
+            <input v-model="newHouse.title" id="title" type="text" placeholder="New house name..." />
+            <button>
+              <i class="fas fa-plus-circle fa-2x"></i>
+            </button>
+          </form>
+        </div>
       </div>
-
-      <div id="house-icons-row" v-for="house in houses" :key="house._id">
-        <i class="fas fa-home fa-3x"></i>
-        <h5>{{house.title}}</h5>
+    </div>
+    <div class="row row2">
+      <div class="col-12" v-for="house in houses" :key="house._id">
+        <div id="house-icons-row">
+          <i class="fas fa-home fa-3x"></i>
+          <router-link :to="{ name: 'house', params: { houseId: house._id } }" id="router">
+            <h4>{{house.houseId.title}}</h4>
+          </router-link>
+        </div>
       </div>
-      <button @click.prevent="logout">Logout</button>
+    </div>
+    <div class="row row2">
+      <div class="col">
+        <button @click.prevent="logout">Logout</button>
+      </div>
     </div>
   </div>
 </template>
@@ -23,11 +34,9 @@
 export default {
   name: "houses",
   mounted() {
-    this.$store.dispatch(
-      "getHousesForProfile",
-      this.$store.state.activeProfile.id
-    );
     this.$store.dispatch("setActiveProfile", this.$store.state.user._id);
+
+    // this.$store.dispatch("getHousesForProfile", this.activeProfile._id);
   },
   data() {
     return {
@@ -40,11 +49,13 @@ export default {
   computed: {
     houses() {
       return this.$store.state.houses;
+    },
+    activeProfile() {
+      return this.$store.state.activeProfile;
     }
   },
   methods: {
     createHouse() {
-      debugger;
       let house = { ...this.newHouse };
       this.$store.dispatch("createHouse", house);
       this.newHouse = {
@@ -63,19 +74,27 @@ export default {
 #houses-div {
   border-top: 25px solid cornflowerblue;
   border-bottom: 25px solid cornflowerblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#house-icons-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.row2 {
+  margin: 5%;
 }
 
 .houses {
   height: 100%;
 }
 
-#add-house-btn {
-  align-self: flex-end;
-  margin-right: 15px;
-  margin-top: 8px;
-}
-
-#house-icons-row {
-  margin-top: 5vh;
+h4 {
+  color: black;
+  width: 75vw;
 }
 </style>
