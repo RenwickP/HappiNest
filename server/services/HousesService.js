@@ -35,9 +35,7 @@ class HousesService {
   }
 
   async getHouseById(id) {
-    console.log("from server", id);
     let data = await _repository.find({ _id: id });
-    console.log("from server2", data);
     return data;
   }
   async edit(id, update) {
