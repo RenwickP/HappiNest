@@ -54,7 +54,7 @@ export default new Vuex.Store({
     },
 
     setActiveHouse(state, house) {
-      state.activeHouse = house.houseId;
+      state.activeHouse = house[0];
     }
   },
   actions: {

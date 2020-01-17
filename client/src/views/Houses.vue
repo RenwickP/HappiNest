@@ -16,7 +16,7 @@
       <div class="col-12" v-for="house in houses" :key="house._id">
         <div id="house-icons-row">
           <i class="fas fa-home fa-3x"></i>
-          <router-link :to="{ name: 'house', params: { houseId: house._id } }" id="router">
+          <router-link :to="{ name: 'house', params: { houseId: house.houseId._id } }" id="router">
             <h4>{{house.houseId.title}}</h4>
           </router-link>
         </div>

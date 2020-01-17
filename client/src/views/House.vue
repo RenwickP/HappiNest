@@ -7,7 +7,7 @@
       <div class="col">
         <div class="body">
           <div id="title-div">
-            <h3>{{activeHouse.houseId._id}}</h3>
+            <h3>{{activeHouse}}</h3>
           </div>
           <div class="row">
             <div class="col" v-for="profile in profiles" :key="profile.id">
