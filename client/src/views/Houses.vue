@@ -130,7 +130,7 @@ input {
   color: black;
 }
 .col-5 {
-  background-color: var(--warning);
+  background-color: white;
   border: 2px solid black;
   padding-top: 4%;
   margin: 1%;
