@@ -90,7 +90,7 @@ export default new Vuex.Store({
   actions: {
     async setActiveProfile({ commit, dispatch }, userId) {
       let profile = await api.get("profiles", userId);
-      // commit("setActiveProfile", profile);
+      commit("setActiveProfile", profile);
       dispatch("getHousesForProfile", profile.data[0]._id);
       dispatch("getRobo", profile.data[0]);
     },
@@ -163,6 +163,12 @@ export default new Vuex.Store({
     async getProfiles({ commit, dispatch }, id) {
       let res = await api.get("houses/" + id + "/rels");
       commit("setProfiles", res.data);
+    },
+    async addRoommate({commit, dispatch}, roommate) {
+      debugger
+      let res = await api.post("houses/" + roommate._id, roommate)
+      console.log(res.data);
+      commit("setProfiles", res.data)
     }
     //#endregion
   }
