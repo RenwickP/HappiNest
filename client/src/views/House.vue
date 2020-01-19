@@ -2,8 +2,23 @@
   <div class="house container-fluid">
     <div class="row">
       <div class="col">
-        <div id="title-div">
-          <h1>{{activeHouse.title}}</h1>
+
+        <div class="arrow-up"></div>
+      </div>
+      <div class="col">
+        <div class="body">
+          <div id="title-div">
+            <h3>{{activeHouse.title}}</h3>
+          </div>
+          <form @submit.prevent="addRoommate">
+            <input type="text" placeholder="Enter Email" v-model="newRoommate.email">
+            <button type="submit">Add Roommate</button>
+          </form>
+          <div class="row">
+            <div class="col" v-for="profile in profiles" :key="profile._id">
+              <room :profileData="profile" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -37,9 +52,21 @@ export default {
     this.$store.dispatch("getProfiles", this.$route.params.houseId);
   },
   data() {
-    return {};
+    return {
+      newRoommate: {
+        email: "",
+        _id: this.$route.params.houseId
+      }
+    };
   },
-  methods: {},
+  methods: {
+    addRoommate() {
+      let roommate = {...this.newRoommate}
+      this.$store.dispatch("addRoommate", roommate)
+      newRoommate.email = ""
+      newRoommate._id = ""
+    }
+  },
   computed: {
     activeHouse() {
       return this.$store.state.activeHouse;

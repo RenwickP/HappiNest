@@ -43,7 +43,7 @@ export default {
     return {
       newHouse: {
         title: "",
-        creator: this.$store.state.activeProfile.id
+        creator: this.$store.state.activeProfile._id
       }
     };
   },
