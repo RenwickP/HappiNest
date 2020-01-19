@@ -10,15 +10,6 @@
           <div id="title-div">
             <h3>{{activeHouse.title}}</h3>
           </div>
-          <form @submit.prevent="addRoommate">
-            <input type="text" placeholder="Enter Email" v-model="newRoommate.email">
-            <button type="submit">Add Roommate</button>
-          </form>
-          <div class="row">
-            <div class="col" v-for="profile in profiles" :key="profile._id">
-              <room :profileData="profile" />
-            </div>
-          </div>
         </div>
       </div>
     </div>
