@@ -1,7 +1,7 @@
 <template>
   <div class="house">
     <div class="row">
-      <div class="col">{{this.profileData.name}}</div>
+      <div class="col">{{ this.profileData.name }}</div>
     </div>
     <div class="row">
       <div class="col">
@@ -17,6 +17,9 @@
         </div>
         <div class="row">
           <div class="col">STAT</div>
+        </div>
+      </div>
+    
         </div>
       </div>
     </div>
@@ -42,5 +45,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
