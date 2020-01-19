@@ -6,7 +6,7 @@
           <h4>{{this.profileData.name}}</h4>
         </div>
       </div>
-    </div>
+      </div>
     <div class="row">
       <div class="col">
         <div class="avatar-div">
@@ -34,6 +34,8 @@
               <b>30 CHORES COMPLETED</b>
             </div>
           </div>
+        </div>
+      </div>  
         </div>
       </div>
     </div>

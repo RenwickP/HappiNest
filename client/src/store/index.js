@@ -39,7 +39,6 @@ export default new Vuex.Store({
     houseChores: [],
 
     robos: []
-
   },
   mutations: {
     setResource(state, payload) {
@@ -90,7 +89,7 @@ export default new Vuex.Store({
   actions: {
     async setActiveProfile({ commit, dispatch }, userId) {
       let profile = await api.get("profiles", userId);
-      // commit("setActiveProfile", profile);
+      commit("setActiveProfile", profile);
       dispatch("getHousesForProfile", profile.data[0]._id);
       dispatch("getRobo", profile.data[0]);
     },
