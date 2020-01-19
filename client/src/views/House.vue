@@ -1,7 +1,8 @@
 <template>
   <div class="house container-fluid">
-    <div class="row house">
+    <div class="row">
       <div class="col">
+
         <div class="arrow-up"></div>
       </div>
       <div class="col">
@@ -19,6 +20,17 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col" v-for="profile in profiles" :key="profile._id">
+        <room :profileData="profile" />
+      </div>
+      <div id="icons-div">
+        <i class="fas fa-user-plus fa-2x" id="person-icon"></i>
+        <router-link :to="{name: 'houses'}">
+          <i class="fas fa-home fa-2x" id="house-icon"></i>
+        </router-link>
       </div>
     </div>
   </div>
@@ -66,68 +78,84 @@ export default {
 };
 </script>
 
-<style>
-.roommate-form {
+<style scoped>
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700,400italic");
+template {
+  --blue: #375a7f;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #e74c3c;
+  --orange: #fd7e14;
+  --yellow: #f39c12;
+  --green: #00bc8c;
+  --teal: #20c997;
+  --cyan: #3498db;
+  --white: #fff;
+  --gray: #999;
+  --gray-dark: #303030;
+  --primary: #375a7f;
+  --secondary: #444;
+  --success: #00bc8c;
+  --info: #3498db;
+  --warning: #f39c12;
+  --danger: #e74c3c;
+  --light: #999;
+  --dark: #303030;
+  --font-family-sans-serif: "Lato", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  overflow: hidden;
+}
+h1 {
+  color: white;
+  text-transform: uppercase;
+  margin: 5%;
+}
+.container-fluid {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  position: relative;
+  -webkit-overflow-scrolling: touch;
+}
+.container-fluid::-webkit-scrollbar {
+  width: 1em;
+}
+.container-fluid::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+
+.container-fluid::-webkit-scrollbar {
+  width: 15px;
+  background-color: #f5f5f5;
+}
+
+.container-fluid::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: var(--warning);
+}
+i {
+  color: white;
+}
+#icons-div {
+  margin: 1%;
+  margin-right: 10px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  text-align: left;
 }
-h4 {
-  color: white;
+#person-icon {
+  margin-bottom: 10px;
 }
-
-h3 {
-  width: 75vw;
-  color: white;
-}
-#title-div {
-  position: absolute;
-  top: -143px;
-  left: -141px;
-}
-#room-name {
-  background-color: white;
-  width: 72vw;
-  height: 20vh;
-  top: -90px;
-  right: -135px;
-  text-align: center;
-  display: flex;
-}
-
-.house {
-  display: flex;
-}
-.arrow-up {
-  margin: auto;
-  margin-top: 75px;
-  width: 0;
-  height: 0;
-  border-left: 173px solid transparent;
-  border-right: 173px solid transparent;
-  border-bottom: 140px solid rgb(142, 184, 231);
-}
-
-.links {
-  color: black;
-  margin-left: 5px;
-  margin-right: 5px;
-}
-
-.body {
-  margin: auto;
-  width: 0;
-  margin-top: -1px;
-  border: 155px solid rgb(142, 184, 231);
-  position: relative;
-}
-.login {
+#house-icon {
+  margin-left: -2px;
+  margin-bottom: 10px;
   margin-top: 5px;
-  justify-content: center;
-}
-.btn-primary {
-  background-color: transparent;
-  color: black;
-  border: none;
 }
 </style>
