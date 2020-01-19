@@ -35,11 +35,8 @@ export default new Vuex.Store({
     houses: [],
     activeProfile: {},
     activeHouse: {},
-
     houseChores: [],
-
     robos: []
-
   },
   mutations: {
     setResource(state, payload) {
@@ -164,11 +161,10 @@ export default new Vuex.Store({
       let res = await api.get("houses/" + id + "/rels");
       commit("setProfiles", res.data);
     },
-    async addRoommate({commit, dispatch}, roommate) {
-      debugger
-      let res = await api.post("houses/" + roommate._id, roommate)
+    async addRoommate({ commit, dispatch }, roommate) {
+      let res = await api.post("houses/" + roommate._id, roommate);
       console.log(res.data);
-      commit("setProfiles", res.data)
+      commit("setProfiles", res.data);
     }
     //#endregion
   }
