@@ -2,14 +2,8 @@
   <div class="house container-fluid">
     <div class="row">
       <div class="col">
-
-        <div class="arrow-up"></div>
-      </div>
-      <div class="col">
-        <div class="body">
-          <div id="title-div">
-            <h3>{{activeHouse.title}}</h3>
-          </div>
+        <div id="title-div">
+          <h1>{{activeHouse.title}}</h1>
         </div>
       </div>
     </div>
@@ -18,11 +12,12 @@
         <room :profileData="profile" />
       </div>
       <div id="icons-div">
-        <i class="fas fa-user-plus fa-2x" id="person-icon"></i>
+        <i @click="showModal" class="fas fa-user-plus fa-2x" id="person-icon"></i>
         <router-link :to="{name: 'houses'}">
           <i class="fas fa-home fa-2x" id="house-icon"></i>
         </router-link>
       </div>
+      <modal v-show="isModalVisible" @close="closeModal" />
     </div>
   </div>
 </template>
@@ -31,11 +26,13 @@
 
 <script>
 import room from "@/components/Room";
+import modal from "../components/Modal";
 
 export default {
   name: "house",
   components: {
-    room
+    room,
+    modal
   },
 
   mounted() {
@@ -44,18 +41,15 @@ export default {
   },
   data() {
     return {
-      newRoommate: {
-        email: "",
-        _id: this.$route.params.houseId
-      }
+      isModalVisible: false
     };
   },
   methods: {
-    addRoommate() {
-      let roommate = {...this.newRoommate}
-      this.$store.dispatch("addRoommate", roommate)
-      newRoommate.email = ""
-      newRoommate._id = ""
+    showModal() {
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
     }
   },
   computed: {
