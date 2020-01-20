@@ -1,3 +1,4 @@
+
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Axios from 'axios'
@@ -6,9 +7,11 @@ import AuthService from '../AuthService'
 import ApiError from '../../../server/utils/ApiError'
 import _profilesService from '../../../server/services/ProfilesService'
 
+
 Vue.use(Vuex)
 
 //Allows axios to work locally or live
+
 let base = window.location.host.includes('localhost:8080')
   ? '//localhost:3000/'
   : '/'
@@ -168,6 +171,7 @@ export default new Vuex.Store({
       let id = roommate.houseId
       let res = await api.post('houses/' + id, roommate)
       commit('setProfiles', res.data)
+
     }
     //#endregion
   }
