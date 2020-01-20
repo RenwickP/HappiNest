@@ -9,12 +9,18 @@
       aria-expanded="false"
     >Log A Chore</button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="#">Do Laundry</a>
-      <a class="dropdown-item" href="#">Mow Lawn</a>
-      <a class="dropdown-item" href="#">Wash Dishes</a>
-      <a class="dropdown-item" href="#">Clean Bathroom</a>
-      <a class="dropdown-item" href="#">Wash Dishes</a>
-      <a class="dropdown-item" href="#">Clean Room</a>
+      <a class="dropdown-item" href="#">Washed Dishes</a>
+      <a class="dropdown-item" href="#">Vacuumed</a>
+      <a class="dropdown-item" href="#">Wiped Down Counters</a>
+      <a class="dropdown-item" href="#">Dusted</a>
+      <a class="dropdown-item" href="#">Mowed Lawn</a>
+      <a class="dropdown-item" href="#">Pulled Weeds</a>
+      <a class="dropdown-item" href="#">Took Out Trash</a>
+      <a class="dropdown-item" href="#">Cleaned Fridge</a>
+      <a class="dropdown-item" href="#">Swept</a>
+      <a class="dropdown-item" href="#">Mopped</a>
+      <a class="dropdown-item" href="#">Cleaned Bathroom</a>
+      <a class="dropdown-item" href="#">Did Laundry</a>
     </div>
   </div>
 </template>
