@@ -47,6 +47,7 @@ export default {
   },
   methods: {
     addRoommate() {
+      debugger;
       let roommate = { ...this.newRoommate };
       this.$store.dispatch("addRoommate", roommate);
       this.newRoomate = {

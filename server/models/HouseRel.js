@@ -4,8 +4,8 @@ let ObjectId = Schema.Types.ObjectId;
 
 const HouseRel = new Schema(
   {
-    houseId: { type: ObjectId, ref: "House", required: true } || { type: ObjectId },
-    profileId: { type: ObjectId, ref: "Profile", required: true } || { type: ObjectId }
+    houseId: { type: ObjectId, ref: "House", required: true },
+    profileId: { type: ObjectId, ref: "Profile", required: true }
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );
