@@ -71,7 +71,6 @@ export default new Vuex.Store({
       state.activeHouse = house[0]
     },
     setProfiles (state, profiles) {
-      debugger
       for (let i = 0; i < profiles.length; i++) {
         const element = profiles[i]
         if (state.profiles.length == 0) {
