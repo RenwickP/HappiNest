@@ -47,7 +47,8 @@ class UsersService {
     let roomData = {};
     roomData.userId = user[0].id;
     roomData.houseId = hId;
-    _profilesService.getProfileByUser(roomData);
+    let data = await _profilesService.getProfileByUser(roomData);
+    return data;
   }
 
   async authenticate(id) {

@@ -60,7 +60,7 @@ export default new Vuex.Store({
       state.houses.push(house);
     },
     setActiveProfile(state, profile) {
-      state.activeProfile = profile.data[0];
+      state.activeProfile = profile;
     },
 
     createProfile(state, profile) {
@@ -71,18 +71,21 @@ export default new Vuex.Store({
       state.activeHouse = house[0];
     },
     setProfiles(state, profiles) {
-      if (state.profiles.length == 0) {
-        state.profiles.push(profiles[0].profileId);
-      } else {
-        for (let i = 0; i < state.profiles.length; i++) {
-          const elem = state.profiles[i];
-          if (profiles[0].profileId._id != elem._id) {
-            state.profiles.push(profiles[0].profileId);
-          } else {
-            break;
+      debugger;
+      for (let i = 0; i < profiles.length; i++) {
+        const element = profiles[i];
+        if (state.profiles.length == 0) {
+          state.profiles.push(element.profileId);
+        } else {
+          for (let i = 0; i < state.profiles.length; i++) {
+            const elem = state.profiles[i];
+            if (element.profileId.userId !== elem.userId) {
+              state.profiles.push(element.profileId);
+            }
           }
         }
       }
+      console.log("from profiles", state.profiles);
     },
     setRobos(state, img) {
       state.robos.push(img);
@@ -91,9 +94,9 @@ export default new Vuex.Store({
   actions: {
     async setActiveProfile({ commit, dispatch }, userId) {
       let profile = await api.get("profiles", userId);
-      commit("setActiveProfile", profile);
+      commit("setActiveProfile", profile.data[0]);
       dispatch("getHousesForProfile", profile.data[0]._id);
-      dispatch("getRobo", profile.data[0]);
+      // dispatch("getRobo", profile.data[0]);
     },
 
     //#region -- AUTH STUFF --
@@ -149,6 +152,7 @@ export default new Vuex.Store({
     async createHouse({ commit, dispatch }, newHouse) {
       let res = await api.post("houses", newHouse);
       commit("setHouse", res.data);
+      dispatch("getHousesForProfile", res.data.creator);
     },
 
     async getHousesForProfile({ commit, dispatch }, profileId) {
@@ -166,12 +170,10 @@ export default new Vuex.Store({
       commit("setProfiles", res.data);
     },
     async addRoommate({ commit, dispatch }, roommate) {
-      debugger;
       let id = roommate.houseId;
       let res = await api.post("houses/" + id, roommate);
-      console.log(res);
-
-      commit("setProfiles", res.data);
+      console.log("from addRoom", res);
+      dispatch("getProfiles", res.data.profileId);
     }
     //#endregion
   }
