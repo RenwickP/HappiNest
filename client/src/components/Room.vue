@@ -6,7 +6,7 @@
           <h4>{{this.profileData.name}}</h4>
         </div>
       </div>
-      </div>
+    </div>
     <div class="row">
       <div class="col">
         <div class="avatar-div">
@@ -16,26 +16,13 @@
       <div class="col" id="stats-col">
         <div class="row">
           <div class="col">
-            <div class="chore-stat">
-              <b>30 CHORES COMPLETED</b>
-            </div>
+            <div class="chore-stat">30 CHORES COMPLETED</div>
           </div>
         </div>
         <div class="row">
           <div class="col">
-            <div class="chore-stat">
-              <b>DISHES TOP CHORE</b>
-            </div>
+            <dropdown />
           </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <div class="chore-stat">
-              <b>30 CHORES COMPLETED</b>
-            </div>
-          </div>
-        </div>
-      </div>  
         </div>
       </div>
     </div>
@@ -43,8 +30,13 @@
 </template>
 
 <script>
+import dropdown from "../components/dropdown";
+
 export default {
   name: "room",
+  components: {
+    dropdown
+  },
   props: ["profileData"],
   mounted() {
     this.$store.dispatch("getRobo", this.profileData.name);
