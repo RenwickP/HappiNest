@@ -42,22 +42,20 @@ export default {
   data() {
     return {
       newHouse: {
-        title: "",
-        creator: this.$store.state.activeProfile._id
+        title: ""
       }
     };
   },
   computed: {
     houses() {
       return this.$store.state.houses;
-    },
-    activeProfile() {
-      return this.$store.state.activeProfile;
     }
   },
   methods: {
-    createHouse() {
+    async createHouse() {
+      debugger;
       let house = { ...this.newHouse };
+      house.creator = this.$store.state.activeProfile._id;
       this.$store.dispatch("createHouse", house);
       this.newHouse = {
         title: "",

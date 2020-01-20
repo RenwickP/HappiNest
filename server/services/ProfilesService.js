@@ -17,7 +17,8 @@ class ProfileService {
     relData.houseId = hId;
     relData.profileId = data[0].id;
     relData.new = true;
-    _housesService.createHouseRel(relData);
+    let newData = await _housesService.createHouseRel(relData);
+    return newData;
   }
   async getByUserId(userId) {
     return await _repository.find({ userId: userId });
