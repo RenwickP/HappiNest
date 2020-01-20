@@ -28,6 +28,7 @@ export default class AuthService {
       let res = await auth.post("register", creds);
       let profile = await auth.get("" + res.data._id + "/profiles");
       _store.commit("setActiveProfile", profile);
+      _store.commit("createProfile", profile);
       return res.data;
     } catch (e) {
       throw new Error(
