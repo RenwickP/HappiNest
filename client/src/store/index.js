@@ -26,6 +26,7 @@ let robo = Axios.create({
 });
 
 export default new Vuex.Store({
+
 	state: {
 		user: {},
 		fakeRooms: [],
@@ -151,6 +152,9 @@ export default new Vuex.Store({
 			commit("setResource", { resource: "houses", data: res.data });
 		},
 
+
+
+
 		async setActiveHouse({ commit, dispatch }, id) {
 			let res = await api.get("houses/" + id);
 			commit("setActiveHouse", res.data);
@@ -160,10 +164,18 @@ export default new Vuex.Store({
 			let res = await api.get("houses/" + id + "/rels");
 			commit("setProfiles", res.data);
 		},
-		//#endregion
 
-		//#region -- CHORE FUNCTIONS --
-		async
-		//#endregion
-	}
+
+    async getHousesForProfile({ commit, dispatch }, profileId) {
+      let res = await api.get("profiles/" + profileId + "/rels");
+      commit("setResource", { resource: "houses", data: res.data });
+    },
+  
+    async addRoommate({ commit, dispatch }, roommate) {
+      let res = await api.post("houses/" + roommate._id, roommate);
+      console.log(res.data);
+      commit("setProfiles", res.data);
+    }
+    //#endregion
+  }
 });
