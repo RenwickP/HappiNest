@@ -19,6 +19,7 @@
       </div>
       <modal v-show="isModalVisible" @close="closeModal" />
     </div>
+    <stats />
   </div>
 </template>
 
@@ -27,12 +28,14 @@
 <script>
 import room from "@/components/Room";
 import modal from "../components/Modal";
+import stats from "../components/Stats";
 
 export default {
   name: "house",
   components: {
     room,
-    modal
+    modal,
+    stats
   },
 
   mounted() {
