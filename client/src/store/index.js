@@ -94,7 +94,6 @@ export default new Vuex.Store({
       let profile = await api.get("profiles", userId);
       commit("setActiveProfile", profile.data[0]);
       dispatch("getHousesForProfile", profile.data[0]._id);
-      // dispatch("getRobo", profile.data[0]);
     },
 
     //#region -- AUTH STUFF --

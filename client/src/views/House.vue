@@ -70,6 +70,9 @@ export default {
     },
     profiles() {
       return this.$store.state.profiles;
+    },
+    houseChores() {
+      this.$store.state.houseChores;
     }
   }
 };

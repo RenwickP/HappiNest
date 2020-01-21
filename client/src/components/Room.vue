@@ -16,7 +16,7 @@
       <div class="col" id="stats-col">
         <div class="row">
           <div class="col">
-            <div class="chore-stat">30 CHORES COMPLETED</div>
+            <div class="chore-stat">{{choreCounter}} CHORES COMPLETED</div>
           </div>
         </div>
         <div class="row">
@@ -39,15 +39,28 @@ export default {
   },
   props: ["profileData"],
   data() {
-    return {};
+    return { count: 0, profileId: this.profileData._id };
   },
   methods: {},
   computed: {
+    choreCounter() {
+      this.count = 0;
+      let houseChores = this.$store.state.houseChores;
+      for (let i = 0; i < houseChores.length; i++) {
+        let profile = houseChores[i];
+        if (this.profileId == profile.profileId) {
+          for (let prop in profile) {
+            if (typeof profile[prop] === "number") {
+              this.count += profile[prop];
+            }
+          }
+          break;
+        }
+      }
+      return this.count;
+    },
     dropData() {
       return this.profileData;
-    },
-    robo() {
-      return this.$store.state.robos;
     }
   }
 };
