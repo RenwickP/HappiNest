@@ -138,11 +138,14 @@ export default new Vuex.Store({
       newProfileData._id = profile._id;
       newProfileData.userId = userId;
       newProfileData.url = image;
+      newProfileData.name = name;
       dispatch("editProfile", newProfileData);
     },
     async editProfile({ commit, dispatch }, profileUpdate) {
       let res = await api.put("profiles/" + profileUpdate._id, {
-        avatar: profileUpdate.url
+        avatar: profileUpdate.url,
+        userId: profileUpdate.userId,
+        name: profileUpdate.name
       });
       commit("setActiveProfile", res.data);
     },
