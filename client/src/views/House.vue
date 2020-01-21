@@ -43,6 +43,7 @@ export default {
     if (this.$store.state.profiles.length < 2) {
       this.$store.dispatch("getProfiles", this.$route.params.houseId);
     }
+    this.$store.dispatch("getChores", this.$route.params.houseId);
   },
   data() {
     return {

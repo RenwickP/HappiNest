@@ -21,7 +21,7 @@
         </div>
         <div class="row">
           <div class="col">
-            <dropdown />
+            <dropdown :dropData="dropData" />
           </div>
         </div>
       </div>
@@ -46,6 +46,9 @@ export default {
   },
   methods: {},
   computed: {
+    dropData() {
+      return this.profileData;
+    },
     robo() {
       return this.$store.state.robos;
     }

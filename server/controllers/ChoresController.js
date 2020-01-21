@@ -16,10 +16,10 @@ export default class ChoresController {
   }
   async createChore(req, res, next) {
     try {
-      let chore = await _choresService.createChore(req.body)
-      return res.send(chore)
+      let chore = await _choresService.createChore(req.body);
+      return res.send(chore);
     } catch (error) {
-      next(error)
+      next(error);
     }
   }
 }
