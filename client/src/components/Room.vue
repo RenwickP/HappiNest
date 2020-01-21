@@ -1,5 +1,5 @@
 <template>
-  <div class="house">
+  <div class="room">
     <div class="row">
       <div class="col">
         <div id="roommate-name">
@@ -38,9 +38,6 @@ export default {
     dropdown
   },
   props: ["profileData"],
-  mounted() {
-    this.$store.dispatch("getRobo", this.profileData.name);
-  },
   data() {
     return {};
   },
@@ -95,11 +92,11 @@ h4 {
   background-color: var(--primary);
   margin-top: -1px;
 }
-.house {
+.room {
   background-color: white;
+  margin-top: 5%;
 }
 .avatar-div {
-  margin-top: -20px;
   margin-bottom: 10pt;
 }
 .chore-stat {

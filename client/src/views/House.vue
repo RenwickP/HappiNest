@@ -43,11 +43,13 @@ export default {
   },
 
   mounted() {
-    this.$store.dispatch("setActiveHouse", this.$route.params.houseId);
+    this.$store.commit("resetState", this.$store.state);
+    this.$store.dispatch("setActiveHouse", this.$route.params.id);
     if (this.$store.state.profiles.length < 2) {
-      this.$store.dispatch("getProfiles", this.$route.params.houseId);
+      this.$store.dispatch("getProfiles", this.$route.params.id);
     }
-    this.$store.dispatch("getChores", this.$route.params.houseId);
+    this.$store.dispatch("getChores", this.$route.params.id);
+    this.$store.commit("setProfiles", this.$store.state.profiles);
   },
   data() {
     return {

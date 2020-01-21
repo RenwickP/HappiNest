@@ -18,7 +18,7 @@
     <div class="row justify-content-center" id="houses-row">
       <div class="col-5" v-for="house in houses" :key="house._id">
         <div id="house-icons-row">
-          <router-link :to="{ name: 'house', params: { houseId: house.houseId._id } }" id="router">
+          <router-link :to="{ name: 'house', params: { id: house.houseId.id } }" id="router">
             <i class="fas fa-home fa-3x"></i>
             <h5>{{house.houseId.title}}</h5>
           </router-link>
