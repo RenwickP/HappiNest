@@ -29,8 +29,7 @@ export default new Vuex.Store({
     houses: [],
     activeProfile: {},
     activeHouse: {},
-    houseChores: [],
-    robos: []
+    houseChores: []
   },
   mutations: {
     setResource(state, payload) {
@@ -79,8 +78,8 @@ export default new Vuex.Store({
         }
       }
     },
-    setRobos(state, img) {
-      state.robos.push(img);
+    setNewProfile(state, profiles) {
+      state.profiles.push(profiles[profiles.length - 1].profileId);
     }
   },
   actions: {
@@ -129,18 +128,7 @@ export default new Vuex.Store({
     createHouseName({ commit, dispatch }, house) {
       commit("addFakeHouse", house);
     },
-    async getRobo({ commit, dispatch }, profile) {
-      let name = profile.name;
-      let userId = profile.userId;
-      let url = "https://robohash.org/" + name + ".png";
-      let image = (document.createElement("img").src = url);
-      let newProfileData = {};
-      newProfileData._id = profile._id;
-      newProfileData.userId = userId;
-      newProfileData.url = image;
-      newProfileData.name = name;
-      dispatch("editProfile", newProfileData);
-    },
+
     async editProfile({ commit, dispatch }, profileUpdate) {
       let res = await api.put("profiles/" + profileUpdate._id, {
         avatar: profileUpdate.url,
@@ -173,8 +161,11 @@ export default new Vuex.Store({
     async addRoommate({ commit, dispatch }, roommate) {
       let id = roommate.houseId;
       let res = await api.post("houses/" + id, roommate);
-
-      dispatch("getProfiles", res.data.profileId);
+      dispatch("getAddedProfiles", res.data.houseId);
+    },
+    async getAddedProfiles({ commit, dispatch }, id) {
+      let res = await api.get("houses/" + id + "/rels");
+      commit("setNewProfile", res.data);
     }
     //#endregion
   }

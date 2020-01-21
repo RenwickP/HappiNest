@@ -11,7 +11,7 @@
       </header>
       <section class="modal-body">
         <slot name="body">
-          <form class="new-roommate-form" @submit.prevent="addRoommate">
+          <form class="new-roommate-form" @submit.prevent="addRoommate(), close()">
             <div id="name-form">
               <input
                 required

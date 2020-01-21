@@ -10,7 +10,7 @@
     <div class="row">
       <div class="col">
         <div class="avatar-div">
-          <img :src="this.profileData.avatar" />
+          <img :src="this.profileData.avatar + this.profileData.name" />
         </div>
       </div>
       <div class="col" id="stats-col">
@@ -37,19 +37,7 @@ export default {
   components: {
     dropdown
   },
-  props: ["profileData"],
-  mounted() {
-    this.$store.dispatch("getRobo", this.profileData);
-  },
-  data() {
-    return {};
-  },
-  methods: {},
-  computed: {
-    robo() {
-      return this.$store.state.robos;
-    }
-  }
+  props: ["profileData"]
 };
 </script>
 
@@ -96,7 +84,7 @@ h4 {
   background-color: white;
 }
 .avatar-div {
-  margin-top: -35px;
+  margin-top: -20px;
   margin-bottom: 10pt;
 }
 .chore-stat {

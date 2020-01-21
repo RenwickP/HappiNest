@@ -7,7 +7,7 @@ const Profile = new Schema(
     userId: { type: ObjectId, ref: "User", required: true },
     name: { type: String, required: true },
     //  ref: 'User'
-    avatar: { type: String }
+    avatar: { type: String, default: "https://robohash.org/" }
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );

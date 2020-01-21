@@ -7,7 +7,7 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row" id="anchor-row">
       <div class="col">
         <div v-for="profile in profiles" :key="profile._id">
           <room :profileData="profile" />
@@ -143,6 +143,7 @@ i {
   display: flex;
   flex-direction: column;
   text-align: center;
+  position: fixed;
 }
 #person-icon {
   margin-bottom: 10px;
@@ -155,5 +156,8 @@ i {
 #icon-col {
   padding-right: 0;
   padding-left: 0;
+}
+#anchor-row {
+  position: relative;
 }
 </style>
