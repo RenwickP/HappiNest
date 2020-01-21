@@ -4,9 +4,7 @@ import { Authorize } from "../middleware/authorize.js";
 
 import _usersService from "../services/UsersService";
 
-
 import _choresService from "../services/choresService.js";
-
 
 //PUBLIC
 export default class HousesController {
@@ -23,6 +21,7 @@ export default class HousesController {
       .post("", this.createHouse)
       .post("/:id", this.addRoom)
       .put("/:id", this.edit)
+      .put("/:id/chores", this.editChore)
       .delete("/:id", this.delete)
       .use(this.defaultRoute);
   }
@@ -67,13 +66,23 @@ export default class HousesController {
 
   async edit(req, res, next) {
     try {
-      let data = await _housesService.edit(req.params.id, req.body);
+      let data = await _choresService.getChoreByHouseAndProfile(
+        req.params.id,
+        req.body
+      );
       return res.send(data);
     } catch (error) {
       next(error);
     }
   }
-
+  async editChore(req, res, next) {
+    try {
+      let data = await _choresService.editChore(req.params.id, req.body);
+      return res.send(data);
+    } catch (error) {
+      next(error);
+    }
+  }
   async delete(req, res, next) {
     try {
       await _housesService.delete(req.params.id, req.body);
@@ -86,10 +95,10 @@ export default class HousesController {
   //CHORES
   async getChoresByHouse(req, res, next) {
     try {
-      let data = await _choresService.getChoresByHouse(req.params.id)
-      return res.send(data)
+      let data = await _choresService.getChoresByHouse(req.params.id);
+      return res.send(data);
     } catch (error) {
-      next(error)
+      next(error);
     }
   }
 }

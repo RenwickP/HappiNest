@@ -5,6 +5,8 @@ import router from "../router/index";
 import AuthService from "../AuthService";
 import ApiError from "../../../server/utils/ApiError";
 import _profilesService from "../../../server/services/ProfilesService";
+import choreModule from "./choreModule";
+
 
 Vue.use(Vuex);
 
@@ -19,8 +21,18 @@ let api = Axios.create({
   timeout: 5000,
   withCredentials: true
 });
+let robo = Axios.create({
+  baseURL: "https://robohash.p.rapidapi.com/index.php",
+  headers: {
+    "x-rapidapi-host": "robohash.p.rapidapi.com",
+    "x-rapidapi-key": "159f8ae7dbmshcb77305ee28c85fp18d00fjsn0ebaae29dd4e"
+  }
+});
 
 export default new Vuex.Store({
+  modules: {
+    choreModule
+  },
   state: {
     user: {},
     fakeRooms: [],
@@ -80,6 +92,12 @@ export default new Vuex.Store({
     },
     setNewProfile(state, profiles) {
       state.profiles.push(profiles[profiles.length - 1].profileId);
+    },
+    setHouseChores(state, chores) {
+      state.houseChores = chores;
+    },
+    setRobos(state, img) {
+      state.robos.push(img);
     }
   },
   actions: {
@@ -128,15 +146,6 @@ export default new Vuex.Store({
     createHouseName({ commit, dispatch }, house) {
       commit("addFakeHouse", house);
     },
-
-    async editProfile({ commit, dispatch }, profileUpdate) {
-      let res = await api.put("profiles/" + profileUpdate._id, {
-        avatar: profileUpdate.url,
-        userId: profileUpdate.userId,
-        name: profileUpdate.name
-      });
-      commit("setActiveProfile", res.data);
-    },
     //#region -- HOUSE FUNCTIONS --
     async createHouse({ commit, dispatch }, newHouse) {
       let res = await api.post("houses", newHouse);
@@ -166,6 +175,8 @@ export default new Vuex.Store({
     async getAddedProfiles({ commit, dispatch }, id) {
       let res = await api.get("houses/" + id + "/rels");
       commit("setNewProfile", res.data);
+      dispatch("getProfiles", res.data.profileId);
+
     }
     //#endregion
   }

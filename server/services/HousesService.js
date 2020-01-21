@@ -3,6 +3,7 @@ import House from "../models/House";
 import Profile from "../models/Profile";
 import ApiError from "../utils/ApiError";
 import HouseRel from "../models/HouseRel";
+import _choresService from "../services/ChoresService";
 
 const _repository = mongoose.model("House", House);
 const _houseRelRepository = mongoose.model("HouseRel", HouseRel);
@@ -11,6 +12,7 @@ class HousesService {
   //#region -- HOUSE REL FUNCTIONS --
   async createHouseRel(relData) {
     let data = await _houseRelRepository.create(relData);
+    _choresService.createChore(relData);
     return data;
   }
   async getRelsByProfile(id) {
@@ -29,6 +31,7 @@ class HousesService {
   }
   //#endregion
 
+  //#endregion
   async createHouse(rawData) {
     rawData.admins = rawData.creator;
     let data = await _repository.create(rawData);

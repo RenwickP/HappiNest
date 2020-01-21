@@ -21,7 +21,7 @@
         </div>
         <div class="row">
           <div class="col">
-            <dropdown />
+            <dropdown :dropData="dropData" />
           </div>
         </div>
       </div>
@@ -37,7 +37,22 @@ export default {
   components: {
     dropdown
   },
-  props: ["profileData"]
+  props: ["profileData"],
+  mounted() {
+    this.$store.dispatch("getRobo", this.profileData.name);
+  },
+  data() {
+    return {};
+  },
+  methods: {},
+  computed: {
+    dropData() {
+      return this.profileData;
+    },
+    robo() {
+      return this.$store.state.robos;
+    }
+  }
 };
 </script>
 

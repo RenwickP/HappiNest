@@ -13,10 +13,8 @@ class ProfileService {
     let hId = roomData.houseId;
     let data = await _repository.find({ userId: roomData.userId });
     let relData = {};
-    let mongoose = require("mongoose");
     relData.houseId = hId;
     relData.profileId = data[0].id;
-    relData.new = true;
     let newData = await _housesService.createHouseRel(relData);
     return newData;
   }
