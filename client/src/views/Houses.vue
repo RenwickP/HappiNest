@@ -53,7 +53,6 @@ export default {
   },
   methods: {
     async createHouse() {
-      debugger;
       let house = { ...this.newHouse };
       house.creator = this.$store.state.activeProfile._id;
       this.$store.dispatch("createHouse", house);

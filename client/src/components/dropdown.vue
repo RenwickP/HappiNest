@@ -9,26 +9,105 @@
       aria-expanded="false"
     >Log A Chore</button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="#">Washed Dishes</a>
-      <a class="dropdown-item" href="#">Vacuumed</a>
-      <a class="dropdown-item" href="#">Wiped Down Counters</a>
-      <a class="dropdown-item" href="#">Dusted</a>
-      <a class="dropdown-item" href="#">Mowed Lawn</a>
-      <a class="dropdown-item" href="#">Pulled Weeds</a>
-      <a class="dropdown-item" href="#">Took Out Trash</a>
-      <a class="dropdown-item" href="#">Cleaned Fridge</a>
-      <a class="dropdown-item" href="#">Swept</a>
-      <a class="dropdown-item" href="#">Mopped</a>
-      <a class="dropdown-item" href="#">Cleaned Bathroom</a>
-      <a class="dropdown-item" href="#">Did Laundry</a>
+      <p class="dropdown-item" @click.prevent="addDishes">Washed Dishes</p>
+      <p class="dropdown-item" @click.prevent="addVacuum">Vacuumed</p>
+      <p class="dropdown-item" @click.prevent="addCounters">Wiped Down Counters</p>
+      <p class="dropdown-item" @click.prevent="addDust">Dusted</p>
+      <p class="dropdown-item" @click.prevent="addLawn">Mowed Lawn</p>
+      <p class="dropdown-item" @click.prevent="addWeeds">Pulled Weeds</p>
+      <p class="dropdown-item" @click.prevent="addTrash">Took Out Trash</p>
+      <p class="dropdown-item" @click.prevent="addFridge">Cleaned Fridge</p>
+      <p class="dropdown-item" @click.prevent="addSwept">Swept</p>
+      <p class="dropdown-item" @click.prevent="addMop">Mopped</p>
+      <p class="dropdown-item" @click.prevent="addBathroom">Cleaned Bathroom</p>
     </div>
   </div>
 </template>
 
 <script>
+import Room from "./Room";
 export default {
   name: "dropdown",
-  props: ["dropData"]
+  props: ["dropData"],
+  methods: {
+    addDishes() {
+      let ids = {
+        houseId: this.$route.params.houseId,
+        profileId: this.dropData._id
+      };
+      this.$store.dispatch("addDishes", ids);
+    },
+    addVacuum() {
+      let ids = {
+        houseId: this.$route.params.houseId,
+        profileId: this.dropData._id
+      };
+      this.$store.dispatch("addVacuum", ids);
+    },
+    addCounters() {
+      let ids = {
+        houseId: this.$route.params.houseId,
+        profileId: this.dropData._id
+      };
+      this.$store.dispatch("addCounters", ids);
+    },
+    addDust() {
+      let ids = {
+        houseId: this.$route.params.houseId,
+        profileId: this.dropData._id
+      };
+      this.$store.dispatch("addDust", ids);
+    },
+    addLawn() {
+      let ids = {
+        houseId: this.$route.params.houseId,
+        profileId: this.dropData._id
+      };
+      this.$store.dispatch("addLawn", ids);
+    },
+    addWeeds() {
+      let ids = {
+        houseId: this.$route.params.houseId,
+        profileId: this.dropData._id
+      };
+      this.$store.dispatch("addWeeds", ids);
+    },
+    addTrash() {
+      let ids = {
+        houseId: this.$route.params.houseId,
+        profileId: this.dropData._id
+      };
+      this.$store.dispatch("addTrash", ids);
+    },
+    addFridge() {
+      let ids = {
+        houseId: this.$route.params.houseId,
+        profileId: this.dropData._id
+      };
+      this.$store.dispatch("addFridge", ids);
+    },
+    addSwept() {
+      let ids = {
+        houseId: this.$route.params.houseId,
+        profileId: this.dropData._id
+      };
+      this.$store.dispatch("addSwept", ids);
+    },
+    addMop() {
+      let ids = {
+        houseId: this.$route.params.houseId,
+        profileId: this.dropData._id
+      };
+      this.$store.dispatch("addMop", ids);
+    },
+    addBathroom() {
+      let ids = {
+        houseId: this.$route.params.houseId,
+        profileId: this.dropData._id
+      };
+      this.$store.dispatch("addBathroom", ids);
+    }
+  }
 };
 </script>
 
