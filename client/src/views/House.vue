@@ -8,14 +8,18 @@
       </div>
     </div>
     <div class="row">
-      <div class="col" v-for="profile in profiles" :key="profile._id">
-        <room :profileData="profile" />
+      <div class="col">
+        <div v-for="profile in profiles" :key="profile._id">
+          <room :profileData="profile" />
+        </div>
       </div>
-      <div id="icons-div">
-        <i @click="showModal" class="fas fa-user-plus fa-2x" id="person-icon"></i>
-        <router-link :to="{name: 'houses'}">
-          <i class="fas fa-home fa-2x" id="house-icon"></i>
-        </router-link>
+      <div class="col-2" id="icon-col">
+        <div id="icons-div">
+          <i @click="showModal" class="fas fa-user-plus fa-2x" id="person-icon"></i>
+          <router-link :to="{name: 'houses'}">
+            <i class="fas fa-home fa-2x" id="house-icon"></i>
+          </router-link>
+        </div>
       </div>
       <modal v-show="isModalVisible" @close="closeModal" />
     </div>
@@ -138,14 +142,18 @@ i {
   margin-right: 10px;
   display: flex;
   flex-direction: column;
-  text-align: left;
+  text-align: center;
 }
 #person-icon {
   margin-bottom: 10px;
 }
 #house-icon {
-  margin-left: -2px;
+  margin-left: -8px;
   margin-bottom: 10px;
   margin-top: 5px;
+}
+#icon-col {
+  padding-right: 0;
+  padding-left: 0;
 }
 </style>

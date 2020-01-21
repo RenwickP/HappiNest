@@ -39,7 +39,7 @@ export default {
   },
   props: ["profileData"],
   mounted() {
-    this.$store.dispatch("getRobo", this.profileData.name);
+    this.$store.dispatch("getRobo", this.profileData);
   },
   data() {
     return {};

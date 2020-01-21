@@ -18,8 +18,8 @@
     <div class="row justify-content-center" id="houses-row">
       <div class="col-5" v-for="house in houses" :key="house._id">
         <div id="house-icons-row">
-          <i class="fas fa-home fa-3x"></i>
           <router-link :to="{ name: 'house', params: { houseId: house.houseId._id } }" id="router">
+            <i class="fas fa-home fa-3x"></i>
             <h5>{{house.houseId.title}}</h5>
           </router-link>
         </div>
@@ -70,7 +70,6 @@ export default {
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css?family=Lato:400,700,400italic");
 template {
   --blue: #375a7f;
   --indigo: #6610f2;
@@ -93,9 +92,8 @@ template {
   --danger: #e74c3c;
   --light: #999;
   --dark: #303030;
-  --font-family-sans-serif: "Lato", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-family-sans-serif: "Lato", "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
 }
