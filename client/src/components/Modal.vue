@@ -41,7 +41,7 @@ export default {
     return {
       newRoommate: {
         email: "",
-        houseId: this.$route.params.houseId
+        houseId: this.$route.params.id
       }
     };
   },
@@ -51,7 +51,7 @@ export default {
       this.$store.dispatch("addRoommate", roommate);
       this.newRoomate = {
         email: "",
-        houseId: this.$route.params.houseId
+        houseId: this.$route.params.id
       };
     },
     close() {

@@ -20,13 +20,6 @@ let api = Axios.create({
   timeout: 5000,
   withCredentials: true
 });
-let robo = Axios.create({
-  baseURL: "https://robohash.p.rapidapi.com/index.php",
-  headers: {
-    "x-rapidapi-host": "robohash.p.rapidapi.com",
-    "x-rapidapi-key": "159f8ae7dbmshcb77305ee28c85fp18d00fjsn0ebaae29dd4e"
-  }
-});
 
 export default new Vuex.Store({
   modules: {
@@ -163,6 +156,7 @@ export default new Vuex.Store({
       commit("setProfiles", res.data);
     },
     async addRoommate({ commit, dispatch }, roommate) {
+      debugger;
       let id = roommate.houseId;
       let res = await api.post("houses/" + id, roommate);
       dispatch("getAddedProfiles", res.data.houseId);
@@ -170,7 +164,7 @@ export default new Vuex.Store({
     async getAddedProfiles({ commit, dispatch }, id) {
       let res = await api.get("houses/" + id + "/rels");
       commit("setNewProfile", res.data);
-      dispatch("getProfiles", res.data.profileId);
+      dispatch("getProfiles", res.data.houseId);
     }
     //#endregion
   }
