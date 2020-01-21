@@ -48,6 +48,7 @@ export default {
       this.$store.dispatch("getProfiles", this.$route.params.houseId);
     }
     this.$store.dispatch("getChores", this.$route.params.houseId);
+    this.$store;
   },
   data() {
     return {
@@ -68,6 +69,9 @@ export default {
     },
     profiles() {
       return this.$store.state.profiles;
+    },
+    houseChores() {
+      this.$store.state.houseChores;
     }
   }
 };
