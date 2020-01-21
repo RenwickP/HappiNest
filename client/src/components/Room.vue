@@ -10,7 +10,7 @@
     <div class="row">
       <div class="col">
         <div class="avatar-div">
-          <img :src="this.profileData.avatar" />
+          <img :src="this.profileData.avatar + this.profileData.name" />
         </div>
       </div>
       <div class="col" id="stats-col">
@@ -99,7 +99,7 @@ h4 {
   background-color: white;
 }
 .avatar-div {
-  margin-top: -35px;
+  margin-top: -20px;
   margin-bottom: 10pt;
 }
 .chore-stat {

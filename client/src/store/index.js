@@ -7,6 +7,7 @@ import ApiError from "../../../server/utils/ApiError";
 import _profilesService from "../../../server/services/ProfilesService";
 import choreModule from "./choreModule";
 
+
 Vue.use(Vuex);
 
 //Allows axios to work locally or live
@@ -17,7 +18,7 @@ let base = window.location.host.includes("localhost:8080")
 
 let api = Axios.create({
   baseURL: base + "api/",
-  timeout: 3000,
+  timeout: 5000,
   withCredentials: true
 });
 let robo = Axios.create({
@@ -40,8 +41,7 @@ export default new Vuex.Store({
     houses: [],
     activeProfile: {},
     activeHouse: {},
-    houseChores: [],
-    robos: []
+    houseChores: []
   },
   mutations: {
     setResource(state, payload) {
@@ -89,7 +89,9 @@ export default new Vuex.Store({
           }
         }
       }
-      console.log("from profiles", state.profiles);
+    },
+    setNewProfile(state, profiles) {
+      state.profiles.push(profiles[profiles.length - 1].profileId);
     },
     setHouseChores(state, chores) {
       state.houseChores = chores;
@@ -144,17 +146,6 @@ export default new Vuex.Store({
     createHouseName({ commit, dispatch }, house) {
       commit("addFakeHouse", house);
     },
-    async getRobo({ commit, dispatch }, profile) {
-      let res = await robo.get("" + profile.name);
-      let newData = {};
-      newData._id = profile._id;
-      newData.url = res.data.imageUrl;
-      dispatch("editProfile", newData);
-    },
-    async editProfile({ commit, dispatch }, data) {
-      let res = await api.put("profiles/" + data._id, { avatar: data.url });
-      commit("setActiveProfile", res.data);
-    },
     //#region -- HOUSE FUNCTIONS --
     async createHouse({ commit, dispatch }, newHouse) {
       let res = await api.post("houses", newHouse);
@@ -179,8 +170,13 @@ export default new Vuex.Store({
     async addRoommate({ commit, dispatch }, roommate) {
       let id = roommate.houseId;
       let res = await api.post("houses/" + id, roommate);
-      console.log("from addRoom", res);
+      dispatch("getAddedProfiles", res.data.houseId);
+    },
+    async getAddedProfiles({ commit, dispatch }, id) {
+      let res = await api.get("houses/" + id + "/rels");
+      commit("setNewProfile", res.data);
       dispatch("getProfiles", res.data.profileId);
+
     }
     //#endregion
   }

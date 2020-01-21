@@ -12,9 +12,7 @@ export default class ProfilesController {
       .get("", this.getByUserId)
       .get("/:id/houses", this.getHousesByProfileId)
       .get("/:id/rels", this.getRelsByProfile)
-      .post("", this.create)
       .put("/:id", this.edit)
-      .delete("/:id", this.delete)
       .use(this.defaultRoute);
   }
 
@@ -46,15 +44,6 @@ export default class ProfilesController {
       next(error);
     }
   }
-  async create(req, res, next) {
-    try {
-      req.body.authorId = req.session.uid;
-      let data = await _boardService.create(req.body);
-      return res.status(201).send(data);
-    } catch (error) {
-      next(error);
-    }
-  }
 
   async edit(req, res, next) {
     try {
@@ -64,15 +53,6 @@ export default class ProfilesController {
         req.body
       );
       return res.send(data);
-    } catch (error) {
-      next(error);
-    }
-  }
-
-  async delete(req, res, next) {
-    try {
-      await _boardService.delete(req.params.id, req.session.uid);
-      return res.send("Successfully deleted");
     } catch (error) {
       next(error);
     }
