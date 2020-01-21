@@ -32,77 +32,77 @@ export default {
   methods: {
     addDishes() {
       let ids = {
-        houseId: this.$route.params.houseId,
+        houseId: this.$route.params.id,
         profileId: this.dropData._id
       };
       this.$store.dispatch("addDishes", ids);
     },
     addVacuum() {
       let ids = {
-        houseId: this.$route.params.houseId,
+        houseId: this.$route.params.id,
         profileId: this.dropData._id
       };
       this.$store.dispatch("addVacuum", ids);
     },
     addCounters() {
       let ids = {
-        houseId: this.$route.params.houseId,
+        houseId: this.$route.params.id,
         profileId: this.dropData._id
       };
       this.$store.dispatch("addCounters", ids);
     },
     addDust() {
       let ids = {
-        houseId: this.$route.params.houseId,
+        houseId: this.$route.params.id,
         profileId: this.dropData._id
       };
       this.$store.dispatch("addDust", ids);
     },
     addLawn() {
       let ids = {
-        houseId: this.$route.params.houseId,
+        houseId: this.$route.params.id,
         profileId: this.dropData._id
       };
       this.$store.dispatch("addLawn", ids);
     },
     addWeeds() {
       let ids = {
-        houseId: this.$route.params.houseId,
+        houseId: this.$route.params.id,
         profileId: this.dropData._id
       };
       this.$store.dispatch("addWeeds", ids);
     },
     addTrash() {
       let ids = {
-        houseId: this.$route.params.houseId,
+        houseId: this.$route.params.id,
         profileId: this.dropData._id
       };
       this.$store.dispatch("addTrash", ids);
     },
     addFridge() {
       let ids = {
-        houseId: this.$route.params.houseId,
+        houseId: this.$route.params.id,
         profileId: this.dropData._id
       };
       this.$store.dispatch("addFridge", ids);
     },
     addSwept() {
       let ids = {
-        houseId: this.$route.params.houseId,
+        houseId: this.$route.params.id,
         profileId: this.dropData._id
       };
       this.$store.dispatch("addSwept", ids);
     },
     addMop() {
       let ids = {
-        houseId: this.$route.params.houseId,
+        houseId: this.$route.params.id,
         profileId: this.dropData._id
       };
       this.$store.dispatch("addMop", ids);
     },
     addBathroom() {
       let ids = {
-        houseId: this.$route.params.houseId,
+        houseId: this.$route.params.id,
         profileId: this.dropData._id
       };
       this.$store.dispatch("addBathroom", ids);
