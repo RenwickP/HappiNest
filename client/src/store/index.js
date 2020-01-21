@@ -7,7 +7,6 @@ import ApiError from "../../../server/utils/ApiError";
 import _profilesService from "../../../server/services/ProfilesService";
 import choreModule from "./choreModule";
 
-
 Vue.use(Vuex);
 
 //Allows axios to work locally or live
@@ -95,9 +94,6 @@ export default new Vuex.Store({
     },
     setHouseChores(state, chores) {
       state.houseChores = chores;
-    },
-    setRobos(state, img) {
-      state.robos.push(img);
     }
   },
   actions: {
@@ -176,7 +172,6 @@ export default new Vuex.Store({
       let res = await api.get("houses/" + id + "/rels");
       commit("setNewProfile", res.data);
       dispatch("getProfiles", res.data.profileId);
-
     }
     //#endregion
   }
