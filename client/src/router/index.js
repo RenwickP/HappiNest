@@ -11,7 +11,7 @@ import Houses from "../views/Houses.vue";
 // @ts-ignore
 import House from "../views/House.vue";
 // @ts-ignore
-import testroute from "../views/TESTStats.vue";
+import DemoHouse from "../views/DemoHouse.vue";
 
 Vue.use(Router);
 
@@ -38,9 +38,9 @@ export default new Router({
       component: Houses
     },
     {
-      path: "/testroute",
-      name: "testroute",
-      component: testroute
+      path: "/demohouse",
+      name: "demohouse",
+      component: DemoHouse
     },
     {
       path: "/house/:id",

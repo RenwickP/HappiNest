@@ -1,34 +1,37 @@
 <template>
   <div class="landing container-fluid">
+    <div class="row">
+      <div class="col">
+        <h2>HappiNest</h2>
+      </div>
+    </div>
     <div class="row house">
       <div class="col">
         <div class="arrow-up"></div>
       </div>
-      <div class="col">
+    </div>
+    <div class="row">
+      <div class="col" id="relative-body-col">
         <div class="body">
-          <div v-if="fakeHouse" id="house-title">
-            <h4>{{ fakeHouse }}</h4>
-          </div>
-
-          <div class="fake-rooms" v-for="fakeRoom in fakeRooms" :key="fakeRoom">
-            <h3 id="room-name">{{ fakeRoom }}</h3>
-          </div>
-
-          <div class="roommate-form">
-            <form v-if="!fakeHouse" @submit.prevent="createHouseName">
-              <input type="text" placeholder="Name Your House" v-model="newHouse" />
-            </form>
-            <form @submit.prevent="createFakeRoom">
-              <input type="text" placeholder="Add A Roommate" v-model="roommateName" />
-            </form>
-          </div>
+          <img src="@/assets/HappiNest1.png" width="200" height="200" />
+          <router-link :to="{ name: 'demohouse' }" id="demohouse">
+            <div>
+              <button type="button">Add roommates!</button>
+            </div>
+          </router-link>
         </div>
       </div>
+    </div>
 
+    <div class="row">
       <div class="col d-flex login">
-        <router-link class="links" :to="{ name: 'login' }" id="login">Login</router-link>
+        <router-link class="links" :to="{ name: 'login' }" id="login"
+          >Login</router-link
+        >
         <p>|</p>
-        <router-link class="links" :to="{ name: 'register' }" id="register">Register</router-link>
+        <router-link class="links" :to="{ name: 'register' }" id="register"
+          >Register</router-link
+        >
       </div>
     </div>
   </div>
@@ -36,34 +39,10 @@
 
 <script>
 import router from "@/router/index.js";
+import LandingModal from "../components/LandingModal.vue";
+
 export default {
-  name: "landing",
-  data() {
-    return {
-      roommateName: "",
-      newHouse: ""
-    };
-  },
-  methods: {
-    createFakeRoom() {
-      let room = this.roommateName;
-      this.$store.dispatch("createFakeRoom", room);
-      this.roommateName = "";
-    },
-    createHouseName() {
-      let house = this.newHouse;
-      this.$store.dispatch("createHouseName", house);
-      this.newHouse = "";
-    }
-  },
-  computed: {
-    fakeRooms() {
-      return this.$store.state.fakeRooms;
-    },
-    fakeHouse() {
-      return this.$store.state.fakeHouse;
-    }
-  }
+  name: "landing"
 };
 </script>
 
@@ -90,28 +69,6 @@ template {
   --danger: #e74c3c;
   --light: #999;
   --dark: #303030;
-  --font-family-sans-serif: "Lato", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
-}
-.roommate-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-h4 {
-  color: white;
-}
-#room-name {
-  background-color: white;
-  width: 72vw;
-  height: 20vh;
-  top: -90px;
-  right: -135px;
-  text-align: center;
-  display: flex;
 }
 p {
   color: white;
@@ -121,25 +78,25 @@ p {
 }
 .arrow-up {
   margin: auto;
-  margin-top: 75px;
+  margin-top: 30px;
   width: 0;
   height: 0;
   border-left: 173px solid transparent;
   border-right: 173px solid transparent;
   border-bottom: 140px solid var(--primary);
 }
-
 .links {
   color: white;
   margin-left: 5px;
   margin-right: 5px;
 }
-
 .body {
   margin: auto;
   width: 0;
   margin-top: -1px;
   border: 155px solid var(--primary);
+  position: relative;
+  height: 310px;
 }
 .login {
   margin-top: 5px;
@@ -149,5 +106,27 @@ p {
   background-color: transparent;
   color: black;
   border: none;
+}
+h4 {
+  width: 50vw;
+  color: white;
+  text-transform: uppercase;
+}
+h2 {
+  color: white;
+  padding: 5%;
+  margin-top: 20pt;
+}
+button {
+  width: 44vw;
+  height: 6vh;
+  position: absolute;
+  top: -50px;
+  right: -81px;
+}
+img {
+  position: absolute;
+  bottom: 69px;
+  left: -99px;
 }
 </style>

@@ -11,14 +11,14 @@
       </header>
       <section class="modal-body">
         <slot name="body">
-          <form class="new-roommate-form" @submit.prevent="addRoommate(), close()">
+          <form class="add-demo-roommate" @submit.prevent="createFakeRoom(), close()">
             <div id="name-form">
               <input
                 required
                 id="email"
                 type="text"
-                placeholder="Enter roommate email"
-                v-model="newRoommate.email"
+                placeholder="Enter roommate name"
+                v-model="roommateName"
               />
             </div>
 
@@ -39,20 +39,14 @@ export default {
   name: "modal",
   data() {
     return {
-      newRoommate: {
-        email: "",
-        houseId: this.$route.params.id
-      }
+      roommateName: ""
     };
   },
   methods: {
-    addRoommate() {
-      let roommate = { ...this.newRoommate };
-      this.$store.dispatch("addRoommate", roommate);
-      this.newRoomate = {
-        email: "",
-        houseId: this.$route.params.id
-      };
+    createFakeRoom() {
+      let room = this.roommateName;
+      this.$store.dispatch("createFakeRoom", room);
+      this.roommateName = "";
     },
     close() {
       this.$emit("close");
