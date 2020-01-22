@@ -6,6 +6,7 @@ import AuthService from "../AuthService";
 import ApiError from "../../../server/utils/ApiError";
 import _profilesService from "../../../server/services/ProfilesService";
 import choreModule from "./choreModule";
+import houseModule from "./houseModule";
 
 Vue.use(Vuex);
 
@@ -23,7 +24,8 @@ let api = Axios.create({
 
 export default new Vuex.Store({
   modules: {
-    choreModule
+    choreModule,
+    houseModule
   },
   state: {
     user: {},
@@ -133,38 +135,6 @@ export default new Vuex.Store({
     },
     createHouseName({ commit, dispatch }, house) {
       commit("addFakeHouse", house);
-    },
-    //#region -- HOUSE FUNCTIONS --
-    async createHouse({ commit, dispatch }, newHouse) {
-      let res = await api.post("houses", newHouse);
-      commit("setHouse", res.data);
-      dispatch("getHousesForProfile", res.data.creator);
-    },
-
-    async getHousesForProfile({ commit, dispatch }, profileId) {
-      let res = await api.get("profiles/" + profileId + "/rels");
-      commit("setResource", { resource: "houses", data: res.data });
-    },
-
-    async setActiveHouse({ commit, dispatch }, id) {
-      let res = await api.get("houses/" + id);
-      commit("setActiveHouse", res.data);
-    },
-
-    async getProfiles({ commit, dispatch }, id) {
-      let res = await api.get("houses/" + id + "/rels");
-      commit("setProfiles", res.data);
-    },
-    async addRoommate({ commit, dispatch }, roommate) {
-      let id = roommate.houseId;
-      let res = await api.post("houses/" + id, roommate);
-      dispatch("getAddedProfiles", res.data.houseId);
-    },
-    async getAddedProfiles({ commit, dispatch }, id) {
-      let res = await api.get("houses/" + id + "/rels");
-      commit("setNewProfile", res.data);
-      dispatch("getProfiles", res.data.houseId);
     }
-    //#endregion
   }
 });
