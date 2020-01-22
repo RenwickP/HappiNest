@@ -1,14 +1,24 @@
 <template>
   <div class="register container-fluid">
+    <div class="row">
+      <div class="col">
+        <h2>HappiNest</h2>
+      </div>
+    </div>
     <div class="row house">
       <div class="arrow-up"></div>
       <div class="col">
         <div class="body">
+          <img src="@/assets/HappiNest1.png" width="200" height="200" />
           <div id="register-form">
             <form @submit.prevent="register">
               <input type="text" v-model="newUser.name" placeholder="name" />
               <input type="email" v-model="newUser.email" placeholder="email" />
-              <input type="password" v-model="newUser.password" placeholder="password" />
+              <input
+                type="password"
+                v-model="newUser.password"
+                placeholder="password"
+              />
               <button type="submit">Go</button>
             </form>
           </div>
@@ -72,11 +82,6 @@ template {
   --danger: #e74c3c;
   --light: #999;
   --dark: #303030;
-  --font-family-sans-serif: "Lato", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
 }
 .house {
   display: flex;
@@ -96,10 +101,13 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: absolute;
+  top: -77px;
+  left: -95px;
 }
 .arrow-up {
   margin: auto;
-  margin-top: 75px;
+  margin-top: 30px;
   width: 0;
   height: 0;
   border-left: 173px solid transparent;
@@ -112,9 +120,19 @@ p {
   width: 0;
   margin-top: -1px;
   border: 155px solid var(--primary);
-  height: 45vh;
+  height: 310px;
 }
 button {
   width: 100%;
+}
+h2 {
+  color: white;
+  padding: 5%;
+  margin-top: 20pt;
+}
+img {
+  position: absolute;
+  bottom: 69px;
+  left: -99px;
 }
 </style>

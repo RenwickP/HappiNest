@@ -102,11 +102,6 @@ template {
   --danger: #e74c3c;
   --light: #999;
   --dark: #303030;
-  --font-family-sans-serif: "Lato", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
   overflow: hidden;
 }
 h1 {

@@ -11,7 +11,6 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css?family=Lato:400,700,400italic");
 #app {
   --blue: #375a7f;
   --indigo: #6610f2;
@@ -39,14 +38,10 @@ export default {
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: "Lato", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
   height: 100%;
   text-align: center;
   background-color: var(--gray-dark);
+  font-family: "Comfortaa", cursive;
 }
 
 #nav {
