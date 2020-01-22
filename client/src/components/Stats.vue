@@ -9,13 +9,10 @@
       <div class="col-6">Chart</div>
       <div class="col-6">
         <div class="row">
-          <div class="col">Data</div>
-        </div>
-        <div class="row">
-          <div class="col">Data</div>
-        </div>
-        <div class="row">
-          <div class="col">Data</div>
+          <div v-for="profile in profiles" :key="profile._id">
+            Total chores by {{profile.name}}:
+            <childStat :childStatData="profile" />
+          </div>
         </div>
       </div>
     </div>
@@ -23,17 +20,24 @@
 </template>
 
 <script>
+import ChildStat from "@/components/ChildStat";
+
 export default {
   name: "stats",
+  mounted() {
+    console.log(this.$store.state.houseChores);
+  },
+  components: {
+    ChildStat
+  },
   data() {
-    return {};
+    return { count: 0, profileId: this.profileData._id };
   },
   computed: {
-    data() {
-      return "Hello";
+    profiles() {
+      return this.$store.state.profiles;
     }
-  },
-  methods: {}
+  }
 };
 </script>
 

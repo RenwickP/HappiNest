@@ -156,7 +156,6 @@ export default new Vuex.Store({
       commit("setProfiles", res.data);
     },
     async addRoommate({ commit, dispatch }, roommate) {
-      debugger;
       let id = roommate.houseId;
       let res = await api.post("houses/" + id, roommate);
       dispatch("getAddedProfiles", res.data.houseId);
