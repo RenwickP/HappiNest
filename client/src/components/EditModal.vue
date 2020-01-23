@@ -45,7 +45,6 @@ export default {
   },
   methods: {
     editUsername() {
-      debugger;
       let name = { ...this.newName };
       name.id = this.$store.state.activeProfile._id;
       this.$store.dispatch("editUsername", name);

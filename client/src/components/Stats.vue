@@ -24,9 +24,7 @@ import ChildStat from "@/components/ChildStat";
 
 export default {
   name: "stats",
-  mounted() {
-    console.log(this.$store.state.houseChores);
-  },
+  mounted() {},
   components: {
     ChildStat
   },
