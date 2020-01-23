@@ -135,6 +135,10 @@ export default new Vuex.Store({
     },
     createHouseName({ commit, dispatch }, house) {
       commit("addFakeHouse", house);
+    },
+    async editUsername({ commit, dispatch }, update) {
+      let res = await api.put("profiles/" + update.id, update);
+      commit("setActiveProfile", res.data);
     }
   }
 });

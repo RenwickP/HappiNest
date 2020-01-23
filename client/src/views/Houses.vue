@@ -27,20 +27,27 @@
     </div>
     <div class="row" id="footer-row">
       <div class="col">
+        <button @click="showModal">Change Username</button>
         <button @click.prevent="logout" class="m-3">Logout</button>
       </div>
     </div>
+    <edit-modal v-show="isModalVisible" @close="closeModal" />
   </div>
 </template>
 
 <script>
+import EditModal from "../components/EditModal";
 export default {
   name: "houses",
+  components: {
+    EditModal
+  },
   mounted() {
     this.$store.dispatch("setActiveProfile", this.$store.state.user._id);
   },
   data() {
     return {
+      isModalVisible: false,
       newHouse: {
         title: ""
       }
@@ -63,6 +70,12 @@ export default {
     },
     logout() {
       this.$store.dispatch("logout");
+    },
+    showModal() {
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
     }
   }
 };
