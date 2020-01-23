@@ -13,11 +13,8 @@ export default class HousesController {
       .Router()
       .use(Authorize.authenticated)
       .get("/:id", this.getHouseById)
-
       .get("/:id/rels", this.getRelsByHouse)
-
       .get("/:id/chores", this.getChoresByHouse)
-
       .post("", this.createHouse)
       .post("/:id", this.addRoom)
       .put("/:id", this.edit)

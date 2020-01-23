@@ -1,31 +1,19 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import Axios from "axios";
-import router from "../router/index";
-import AuthService from "../AuthService";
-import ApiError from "../../../server/utils/ApiError";
 import _profilesService from "../../../server/services/ProfilesService";
 import choreModule from "./choreModule";
 import houseModule from "./houseModule";
+import othersModule from "./othersModule";
+import authModule from "./authModule";
 
 Vue.use(Vuex);
-
-//Allows axios to work locally or live
-
-let base = window.location.host.includes("localhost:8080")
-  ? "//localhost:3000/"
-  : "/";
-
-let api = Axios.create({
-  baseURL: base + "api/",
-  timeout: 5000,
-  withCredentials: true
-});
 
 export default new Vuex.Store({
   modules: {
     choreModule,
-    houseModule
+    houseModule,
+    othersModule,
+    authModule
   },
   state: {
     user: {},
@@ -89,56 +77,6 @@ export default new Vuex.Store({
     },
     setHouseChores(state, chores) {
       state.houseChores = chores;
-    }
-  },
-  actions: {
-    async setActiveProfile({ commit, dispatch }, userId) {
-      let profile = await api.get("profiles", userId);
-      commit("setActiveProfile", profile.data[0]);
-      dispatch("getHousesForProfile", profile.data[0]._id);
-    },
-
-    //#region -- AUTH STUFF --
-    async register({ commit, dispatch }, creds) {
-      try {
-        let user = await AuthService.Register(creds);
-        commit("setUser", user);
-        router.push({ name: "houses" });
-      } catch (e) {
-        console.warn(e.message);
-      }
-    },
-    async login({ commit, dispatch }, creds) {
-      try {
-        let user = await AuthService.Login(creds);
-        commit("setUser", user);
-        router.push({ name: "houses" });
-      } catch (e) {
-        console.warn(e.message);
-      }
-    },
-    async logout({ commit, dispatch }) {
-      try {
-        let success = await AuthService.Logout();
-        if (!success) {
-        }
-        commit("resetState");
-        router.push({ name: "login" });
-      } catch (e) {
-        console.warn(e.message);
-      }
-    },
-    //#endregion
-
-    createFakeRoom({ commit, dispatch }, room) {
-      commit("addFakeRoom", room);
-    },
-    createHouseName({ commit, dispatch }, house) {
-      commit("addFakeHouse", house);
-    },
-    async editUsername({ commit, dispatch }, update) {
-      let res = await api.put("profiles/" + update.id, update);
-      commit("setActiveProfile", res.data);
     }
   }
 });

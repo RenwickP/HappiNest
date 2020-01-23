@@ -4,7 +4,6 @@
       <div class="col">
         <div class="d-flex" id="header">
           <h4>HappiNest</h4>
-
           <form @submit.prevent="createHouse">
             <input v-model="newHouse.title" id="title" type="text" placeholder="New House Title" />
             <button>
@@ -14,7 +13,6 @@
         </div>
       </div>
     </div>
-
     <div class="row justify-content-center" id="houses-row">
       <div class="col-5" v-for="house in houses" :key="house._id">
         <div id="house-icons-row">

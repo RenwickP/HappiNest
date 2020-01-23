@@ -41,7 +41,6 @@ export default {
     modal,
     stats
   },
-
   mounted() {
     this.$store.commit("resetState", this.$store.state);
     this.$store.dispatch("setActiveHouse", this.$route.params.id);
@@ -79,7 +78,6 @@ export default {
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css?family=Lato:400,700,400italic");
 template {
   --blue: #375a7f;
   --indigo: #6610f2;

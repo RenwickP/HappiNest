@@ -22,16 +22,11 @@
         </div>
       </div>
     </div>
-
     <div class="row">
       <div class="col d-flex login">
-        <router-link class="links" :to="{ name: 'login' }" id="login"
-          >Login</router-link
-        >
+        <router-link class="links" :to="{ name: 'login' }" id="login">Login</router-link>
         <p>|</p>
-        <router-link class="links" :to="{ name: 'register' }" id="register"
-          >Register</router-link
-        >
+        <router-link class="links" :to="{ name: 'register' }" id="register">Register</router-link>
       </div>
     </div>
   </div>
