@@ -1,5 +1,7 @@
 import Axios from "axios";
 import _store from "./store/index";
+import Swal from "sweetalert2";
+
 let baseUrl = location.host.includes("localhost") ? "//localhost:3000/" : "/";
 
 let auth = Axios.create({
@@ -18,7 +20,7 @@ export default class AuthService {
     } catch (e) {
       throw new Error(
         `[login failed] : ${
-          !e.response ? "No response from server" : e.response.data.error
+        !e.response ? "No response from server" : e.response.data.error
         }`
       );
     }
@@ -31,11 +33,42 @@ export default class AuthService {
       _store.commit("createProfile", profile);
       return res.data;
     } catch (e) {
-      throw new Error(
-        `[registration failed] : ${
-          !e.response ? "No response from server" : e.response.data.error
-        }`
-      );
+      if (e.response.data.error.message.includes("E11000")) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Email already in use."
+        })
+        throw new Error(
+          `[registration failed] : ${
+          !e.response ? "Error" : e.response.data.error
+          }`
+        )
+      }
+      else if (e.response.data.error.message.includes("character")) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Password must be at least 6 characters long."
+        })
+        throw new Error(
+          `[registration failed] : ${
+          !e.response ? "Error" : e.response.data.error
+          }`
+        )
+      }
+      else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Registration failed."
+        })
+        throw new Error(
+          `[registration failed] : ${
+          !e.response ? "Error" : e.response.data.error
+          }`
+        )
+      }
     }
   }
   static async Logout() {
@@ -45,7 +78,7 @@ export default class AuthService {
     } catch (e) {
       throw new Error(
         `[logout failed] : ${
-          !e.response ? "No response from server" : e.response.data.error
+        !e.response ? "No response from server" : e.response.data.error
         }`
       );
     }
@@ -57,7 +90,7 @@ export default class AuthService {
     } catch (e) {
       console.warn(
         `[Authentication failed] : ${
-          !e.response ? "No response from server" : e.response.data.error
+        !e.response ? "No response from server" : e.response.data.error
         }`
       );
     }

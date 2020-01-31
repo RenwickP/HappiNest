@@ -32,5 +32,6 @@ export default {
         console.warn(e.message);
       }
     }
+
   }
 };
