@@ -3,7 +3,7 @@
     <div class="modal">
       <header class="modal-header">
         <slot name="header">
-          <h3>Change House Name</h3>
+          <h5>Change House Name</h5>
           <button type="button" class="btn-close" @click="close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -17,7 +17,7 @@
                 required
                 id="name"
                 type="text"
-                placeholder="Enter house name"
+                placeholder="Update house name"
                 v-model="newName.title"
               />
             </div>
