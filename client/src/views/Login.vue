@@ -14,7 +14,7 @@
           <img src="@/assets/HappiNest1.png" width="200" height="200" />
           <div id="login-form">
             <form @submit.prevent="loginUser">
-              <input type="email" v-model="creds.email" placeholder="username" />
+              <input type="text" v-model="creds.email" placeholder="username" />
               <input type="password" v-model="creds.password" placeholder="password" />
               <button type="submit">Login</button>
             </form>
