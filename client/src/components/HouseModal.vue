@@ -3,7 +3,7 @@
     <div class="modal">
       <header class="modal-header">
         <slot name="header">
-          <h3>Change Name</h3>
+          <h5>Change House Name</h5>
           <button type="button" class="btn-close" @click="close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -11,14 +11,14 @@
       </header>
       <section class="modal-body">
         <slot name="body">
-          <form class="new-roommate-form" @submit.prevent="editUsername(), close()">
+          <form class="new-roommate-form" @submit.prevent="editHouse(), close()">
             <div id="name-form">
               <input
                 required
                 id="name"
                 type="text"
-                placeholder="Update name"
-                v-model="newName.name"
+                placeholder="Update house name"
+                v-model="newName.title"
               />
             </div>
             <footer>
@@ -38,18 +38,21 @@ export default {
   data() {
     return {
       newName: {
-        name: ""
+        title: ""
       }
     };
   },
   methods: {
-    editUsername() {
-      let name = { ...this.newName };
-      name.id = this.$store.state.activeProfile._id;
-      this.$store.dispatch("editUsername", name);
+    editHouse() {
+      let update = { ...this.newName };
+      update.profileId = this.$store.state.activeProfile._id;
+      update.admins = this.$store.state.activeHouse.admins;
+      update.id = this.$store.state.activeHouse._id;
+      this.$store.dispatch("editHouse", update);
       this.newName = {
-        name: "",
-        id: this.$store.state.activeProfile._id
+        title: "",
+        profileId: this.$store.state.activeProfile._id,
+        admins: this.$store.state.activeHouse.admins
       };
     },
     close() {

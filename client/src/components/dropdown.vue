@@ -9,17 +9,17 @@
       aria-expanded="false"
     >Log A Chore</button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <p class="dropdown-item" @click.prevent="addDishes">Washed Dishes</p>
-      <p class="dropdown-item" @click.prevent="addVacuum">Vacuumed</p>
-      <p class="dropdown-item" @click.prevent="addCounters">Wiped Down Counters</p>
-      <p class="dropdown-item" @click.prevent="addDust">Dusted</p>
-      <p class="dropdown-item" @click.prevent="addLawn">Mowed Lawn</p>
-      <p class="dropdown-item" @click.prevent="addWeeds">Pulled Weeds</p>
-      <p class="dropdown-item" @click.prevent="addTrash">Took Out Trash</p>
-      <p class="dropdown-item" @click.prevent="addFridge">Cleaned Fridge</p>
-      <p class="dropdown-item" @click.prevent="addSwept">Swept</p>
-      <p class="dropdown-item" @click.prevent="addMop">Mopped</p>
-      <p class="dropdown-item" @click.prevent="addBathroom">Cleaned Bathroom</p>
+      <p class="dropdown-item" @click.prevent="addDishes">Washed Dishes +3</p>
+      <p class="dropdown-item" @click.prevent="addVacuum">Vacuumed +2</p>
+      <p class="dropdown-item" @click.prevent="addCounters">Wiped Down Counters +1</p>
+      <p class="dropdown-item" @click.prevent="addDust">Dusted +1</p>
+      <p class="dropdown-item" @click.prevent="addLawn">Mowed Lawn +3</p>
+      <p class="dropdown-item" @click.prevent="addWeeds">Pulled Weeds +4</p>
+      <p class="dropdown-item" @click.prevent="addTrash">Took Out Trash +2</p>
+      <p class="dropdown-item" @click.prevent="addFridge">Cleaned Fridge +2</p>
+      <p class="dropdown-item" @click.prevent="addSwept">Swept +2</p>
+      <p class="dropdown-item" @click.prevent="addMop">Mopped +3</p>
+      <p class="dropdown-item" @click.prevent="addBathroom">Cleaned Bathroom +5</p>
     </div>
   </div>
 </template>

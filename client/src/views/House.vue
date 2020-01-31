@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col">
         <div id="title-div">
-          <h1>{{activeHouse.title}}</h1>
+          <h1 @click="showModal2">{{activeHouse.title}}</h1>
         </div>
       </div>
     </div>
@@ -22,6 +22,7 @@
         </div>
       </div>
       <modal v-show="isModalVisible" @close="closeModal" />
+      <houseModal v-show="isModalVisible2" @close="closeModal2" />
     </div>
     <stats />
   </div>
@@ -33,13 +34,15 @@
 import room from "@/components/Room";
 import modal from "../components/Modal";
 import stats from "../components/Stats";
+import houseModal from "../components/HouseModal";
 
 export default {
   name: "house",
   components: {
     room,
     modal,
-    stats
+    stats,
+    houseModal
   },
   mounted() {
     this.$store.commit("resetState", this.$store.state);
@@ -52,15 +55,22 @@ export default {
   },
   data() {
     return {
-      isModalVisible: false
+      isModalVisible: false,
+      isModalVisible2: false
     };
   },
   methods: {
     showModal() {
       this.isModalVisible = true;
     },
+    showModal2() {
+      this.isModalVisible2 = true;
+    },
     closeModal() {
       this.isModalVisible = false;
+    },
+    closeModal2() {
+      this.isModalVisible2 = false;
     }
   },
   computed: {
