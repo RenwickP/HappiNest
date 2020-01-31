@@ -1,5 +1,7 @@
 <template>
-  <div class="child-stat">{{choreCounter}}</div>
+  <div class="child-stat">
+    <div id="chore-count">{{choreCounter}}</div>
+  </div>
 </template>
 
 <script>
@@ -30,5 +32,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+#chore-count {
+  margin-left: 5pt;
+}
 </style>
