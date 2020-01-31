@@ -3,7 +3,7 @@
     <div class="modal">
       <header class="modal-header">
         <slot name="header">
-          <h3>Change Username</h3>
+          <h3>Change Name</h3>
           <button type="button" class="btn-close" @click="close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -17,7 +17,7 @@
                 required
                 id="name"
                 type="text"
-                placeholder="Enter roommate email"
+                placeholder="Update name"
                 v-model="newName.name"
               />
             </div>

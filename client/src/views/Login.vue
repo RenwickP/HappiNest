@@ -14,12 +14,8 @@
           <img src="@/assets/HappiNest1.png" width="200" height="200" />
           <div id="login-form">
             <form @submit.prevent="loginUser">
-              <input type="email" v-model="creds.email" placeholder="email" />
-              <input
-                type="password"
-                v-model="creds.password"
-                placeholder="password"
-              />
+              <input type="email" v-model="creds.email" placeholder="username" />
+              <input type="password" v-model="creds.password" placeholder="password" />
               <button type="submit">Login</button>
             </form>
           </div>
@@ -28,9 +24,7 @@
       <div class="col d-flex" id="footer-nav">
         <router-link class="links" :to="{ name: 'landing' }">Home</router-link>
         <p>|</p>
-        <router-link class="links" :to="{ name: 'register' }"
-          >Register</router-link
-        >
+        <router-link class="links" :to="{ name: 'register' }">Register</router-link>
       </div>
     </div>
   </div>

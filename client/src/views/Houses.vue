@@ -25,7 +25,7 @@
     </div>
     <div class="row" id="footer-row">
       <div class="col">
-        <button @click="showModal">Change Username</button>
+        <button @click="showModal">Change Name</button>
         <button @click.prevent="logout" class="m-3">Logout</button>
       </div>
     </div>

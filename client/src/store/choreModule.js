@@ -93,7 +93,7 @@ export default {
       let newData = {};
       newData.profileId = update.profileId;
       newData.swept = res1.data.swept;
-      newData.swept += 1;
+      newData.swept += 2;
       let res2 = await api.put("houses/" + update.houseId + "/chores", newData);
       dispatch("getChores", res2.data.houseId);
     },
