@@ -19,6 +19,7 @@
           <router-link :to="{name: 'houses'}">
             <i class="fas fa-home fa-2x" id="house-icon"></i>
           </router-link>
+          <i class="fas fa-trash fa-2x" id="trash-icon"></i>
         </div>
       </div>
       <modal v-show="isModalVisible" @close="closeModal" />
@@ -161,6 +162,10 @@ i {
   margin-left: -8px;
   margin-bottom: 10px;
   margin-top: 5px;
+}
+#trash-icon {
+  margin-top: 8px;
+  margin-right: 8px;
 }
 #icon-col {
   padding-right: 0;
