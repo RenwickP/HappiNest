@@ -13,12 +13,8 @@
           <div id="register-form">
             <form @submit.prevent="register">
               <input type="text" v-model="newUser.name" placeholder="name" />
-              <input type="email" v-model="newUser.email" placeholder="email" />
-              <input
-                type="password"
-                v-model="newUser.password"
-                placeholder="password"
-              />
+              <input type="email" v-model="newUser.email" placeholder="username" />
+              <input type="password" v-model="newUser.password" placeholder="password" />
               <button type="submit">Go</button>
             </form>
           </div>
