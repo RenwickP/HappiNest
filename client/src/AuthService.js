@@ -18,11 +18,18 @@ export default class AuthService {
       _store.commit("setActiveProfile", profile);
       return res.data;
     } catch (e) {
-      throw new Error(
-        `[login failed] : ${
-        !e.response ? "No response from server" : e.response.data.error
-        }`
-      );
+      if (e.response.data.error.message.includes("Invalid")) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Invalid username or password ."
+        })
+        throw new Error(
+          `[login failed] : ${
+          !e.response ? "No response from server" : e.response.data.error
+          }`
+        );
+      }
     }
   }
   static async Register(creds) {
@@ -37,7 +44,7 @@ export default class AuthService {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Email already in use."
+          text: "Username already in use."
         })
         throw new Error(
           `[registration failed] : ${
