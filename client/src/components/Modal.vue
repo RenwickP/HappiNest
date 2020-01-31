@@ -17,7 +17,7 @@
                 required
                 id="email"
                 type="text"
-                placeholder="Enter roommate email"
+                placeholder="Enter roommate username"
                 v-model="newRoommate.email"
               />
             </div>
