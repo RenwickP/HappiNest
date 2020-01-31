@@ -21,7 +21,7 @@ export default {
       let newData = {};
       newData.profileId = update.profileId;
       newData.dishes = res1.data.dishes;
-      newData.dishes += 1;
+      newData.dishes += 3;
       let res2 = await api.put("houses/" + update.houseId + "/chores", newData);
       dispatch("getChores", res2.data.houseId);
     },
@@ -30,7 +30,7 @@ export default {
       let newData = {};
       newData.profileId = update.profileId;
       newData.vacuumed = res1.data.vacuumed;
-      newData.vacuumed += 1;
+      newData.vacuumed += 2;
       let res2 = await api.put("houses/" + update.houseId + "/chores", newData);
       dispatch("getChores", res2.data.houseId);
     },
@@ -57,7 +57,7 @@ export default {
       let newData = {};
       newData.profileId = update.profileId;
       newData.mowedLawn = res1.data.mowedLawn;
-      newData.mowedLawn += 1;
+      newData.mowedLawn += 3;
       let res2 = await api.put("houses/" + update.houseId + "/chores", newData);
       dispatch("getChores", res2.data.houseId);
     },
@@ -66,7 +66,7 @@ export default {
       let newData = {};
       newData.profileId = update.profileId;
       newData.pulledWeeds = res1.data.pulledWeeds;
-      newData.pulledWeeds += 1;
+      newData.pulledWeeds += 4;
       let res2 = await api.put("houses/" + update.houseId + "/chores", newData);
       dispatch("getChores", res2.data.houseId);
     },
@@ -75,7 +75,7 @@ export default {
       let newData = {};
       newData.profileId = update.profileId;
       newData.trash = res1.data.trash;
-      newData.trash += 1;
+      newData.trash += 2;
       let res2 = await api.put("houses/" + update.houseId + "/chores", newData);
       dispatch("getChores", res2.data.houseId);
     },
@@ -84,7 +84,7 @@ export default {
       let newData = {};
       newData.profileId = update.profileId;
       newData.cleanedFridge = res1.data.cleanedFridge;
-      newData.cleanedFridge += 1;
+      newData.cleanedFridge += 2;
       let res2 = await api.put("houses/" + update.houseId + "/chores", newData);
       dispatch("getChores", res2.data.houseId);
     },
@@ -102,7 +102,7 @@ export default {
       let newData = {};
       newData.profileId = update.profileId;
       newData.mopped = res1.data.mopped;
-      newData.mopped += 1;
+      newData.mopped += 3;
       let res2 = await api.put("houses/" + update.houseId + "/chores", newData);
       dispatch("getChores", res2.data.houseId);
     },
@@ -111,7 +111,7 @@ export default {
       let newData = {};
       newData.profileId = update.profileId;
       newData.bathroom = res1.data.bathroom;
-      newData.bathroom += 1;
+      newData.bathroom += 5;
       let res2 = await api.put("houses/" + update.houseId + "/chores", newData);
       dispatch("getChores", res2.data.houseId);
     }
