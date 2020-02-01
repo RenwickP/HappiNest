@@ -6,12 +6,14 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-6">Chart</div>
+      <div class="col-6">
+        <pieChart />
+      </div>
       <div class="col-6">
         <div class="row">
           <div v-for="profile in profiles" :key="profile._id">
             <div id="stats-grouping">
-              <b>{{profile.name}}</b>
+              <b>{{ profile.name }}</b>
 
               <div class="d-flex" id="chore-points-group">
                 Total Chore Points:
@@ -27,15 +29,17 @@
 
 <script>
 import ChildStat from "@/components/ChildStat";
+import PieChart from "../components/PieChart";
 
 export default {
   name: "stats",
   mounted() {},
   components: {
-    ChildStat
+    ChildStat,
+    PieChart
   },
   data() {
-    return { count: 0, profileId: this.profileData._id };
+    return {};
   },
   computed: {
     profiles() {
