@@ -1,4 +1,4 @@
-import _choresService from "../services/choresService.js";
+import _choresService from "../services/ChoresService.js";
 import express from "express";
 import { Authorize } from "../middleware/authorize.js";
 
