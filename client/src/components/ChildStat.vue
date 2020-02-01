@@ -1,6 +1,6 @@
 <template>
   <div class="child-stat">
-    <div id="chore-count">{{choreCounter}}</div>
+    <div id="chore-count">{{ choreCounter }}</div>
   </div>
 </template>
 
